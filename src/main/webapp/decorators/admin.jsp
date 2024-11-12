@@ -1,87 +1,80 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp" %>
-<!DOCTYPE html>
 <html>
 <head>
-	<title><dec:title default="Trang chủ" /></title>
 
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="font-awesome/4.5.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-    <script type='text/javascript' src="assets/js/ace-extra.min.js"></script>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<!-- Favicon icon -->
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
+	<title>Edit Building</title>
+	<!-- Custom CSS -->
+	<link href="assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
+	<link href="assets/extra-libs/c3/c3.min.css" rel="stylesheet">
+	<link href="assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+	<!-- Custom CSS -->
+	<link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+		  rel="stylesheet">
+	<link href="dist/css/style.min.css" rel="stylesheet">
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
 
-	<!-- jquery -->
-	<script type='text/javascript' src="js/2.1.4/jquery.min.js"></script>
+	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
-	<%--sweetalert--%>
-	<script type='text/javascript' src="assets/sweetalert2/sweetalert2.min.js"></script>
-	<link rel="stylesheet" href="assets/sweetalert2/sweetalert2.min.css">
+	<![endif]-->
 </head>
 <body class="no-skin">
-	<!-- header -->
-    <%@ include file="/common/admin/header.jsp" %>
-    <!-- header -->
-	
-	<div class="main-container" id="main-container">
-		<script type="text/javascript">
-				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
-		</script>
-		<!-- header -->
+<div class="preloader">
+	<div class="lds-ripple">
+		<div class="lds-pos"></div>
+		<div class="lds-pos"></div>
+	</div>
+</div>
+<div id="main-wrapper">
+<%@ include file="/common/admin/header.jsp" %>
+<!-- header -->
     	<%@ include file="/common/admin/menu.jsp" %>
     	<!-- header -->
-		
+    	<script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    	<!-- Bootstrap tether Core JavaScript -->
+	<script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+	<script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- apps -->
+	<script src="dist/js/app.min.js"></script>
+	<script src="dist/js/app.init.js"></script>
+	<script src="dist/js/app-style-switcher.js"></script>
+	<!-- slimscrollbar scrollbar JavaScript -->
+	<script src="assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
+	<script src="assets/extra-libs/sparkline/sparkline.js"></script>
+	<!--Wave Effects -->
+	<script src="dist/js/waves.js"></script>
+	<!--Menu sidebar -->
+	<script src="dist/js/sidebarmenu.js"></script>
+	<!--Custom JavaScript -->
+	<script src="dist/js/custom.js"></script>
+	<!--This page plugins -->
 		<dec:body/>
-		
-		<!-- footer -->
-    	<%@ include file="/common/admin/footer.jsp" %>
-    	<!-- footer -->
-    	
-    	<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse display">
-				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-		</a>
-	</div>
 
-	<%--jQuery Validation Plugin--%>
-	<script src="js/jqueryvalidate/jquery.validate.min.js"></script>
+<%@ include file="/common/admin/footer.jsp" %>
+</div>
+	<!-- All Jquery -->
+	<!-- ============================================================== -->
 
-	<%--common javascript file--%>
-	<script type="text/javascript" src="js/global_admin_script.js"></script>
 
-	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/jquery-ui.custom.min.js"></script>
-	<script src="assets/js/jquery.ui.touch-punch.min.js"></script>
-	<script src="assets/js/jquery.easypiechart.min.js"></script>
-	<script src="assets/js/jquery.sparkline.min.js"></script>
-	<script src="assets/js/jquery.flot.min.js"></script>
-	<script src="assets/js/jquery.flot.pie.min.js"></script>
-	<script src="assets/js/jquery.flot.resize.min.js"></script>
-	<script src="assets/js/ace-elements.min.js"></script>
-	<script src="assets/js/ace.min.js"></script>
 
-	<!-- page specific plugin scripts -->
-	<script src="assets/js/jquery-ui.min.js"></script>
 
-	<script type="text/javascript">
-        function showAlertBeforeDelete(callback) {
-            swal({
-                title: "Xác nhận xóa",
-                text: "Bạn có chắc chắn xóa những dòng đã chọn",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Xác nhận",
-                cancelButtonText: "Hủy bỏ",
-                confirmButtonClass: "btn btn-success",
-                cancelButtonClass: "btn btn-danger"
-            }).then(function (res) {
-                if(res.value){
-                    callback();
-                }else if(res.dismiss == 'cancel'){
-                    console.log('cancel');
-                }
-            });
-        }
-	</script>
+
+
+	<script src="assets/extra-libs/DataTables/datatables.min.js"></script>
+	<!-- start - This is for export functionality only -->
+	<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+	<script src="dist/js/pages/datatable/datatable-advanced.init.js"></script>
 </body>
 </html>

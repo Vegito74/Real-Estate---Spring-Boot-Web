@@ -5,16 +5,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
@@ -111,9 +102,33 @@ public class BuildingEntity  extends BaseEntity{
     private String managerPhone;
 
 
+    @OneToMany(mappedBy = "building",fetch = FetchType.LAZY)
+    private List<RentAreaEntity> rentAreas = new ArrayList<>();
+
+    @OneToMany(mappedBy ="building", fetch = FetchType.LAZY)
+    private List<AssignmentBuildingEntity> assignmentBuildings = new ArrayList<>();
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name = "assignmentbuilding",
+//        joinColumns =  @JoinColumn(name = "buildingid", nullable = false),
+//            inverseJoinColumns =  @JoinColumn(name = "staffid", nullable = false))
+//    private List<UserEntity> userEntities = new ArrayList<>();
 
 
+    public List<AssignmentBuildingEntity> getAssignmentBuildings() {
+        return assignmentBuildings;
+    }
 
+    public void setAssignmentBuildings(List<AssignmentBuildingEntity> assignmentBuildings) {
+        this.assignmentBuildings = assignmentBuildings;
+    }
+
+    public List<RentAreaEntity> getRentAreas() {
+        return rentAreas;
+    }
+
+    public void setRentAreas(List<RentAreaEntity> rentAreas) {
+        this.rentAreas = rentAreas;
+    }
 
     public String getName() {
         return name;

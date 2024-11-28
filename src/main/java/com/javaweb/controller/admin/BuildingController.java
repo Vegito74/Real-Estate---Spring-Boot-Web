@@ -7,6 +7,7 @@ import com.javaweb.enums.districtCode;
 import com.javaweb.model.dto.BuildingDTO;
 import com.javaweb.model.request.BuildingSearchRequest;
 import com.javaweb.model.response.BuildingSearchResponse;
+import com.javaweb.service.BuildingService;
 import com.javaweb.service.IUserService;
 import com.javaweb.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,30 +28,22 @@ public class BuildingController {
     @Autowired
     private IUserService userService;
 
+    @Autowired
+    private BuildingService buildingService;
 
     @RequestMapping(value="/admin/building-view", method = RequestMethod.GET)
     public ModelAndView buildingList(@ModelAttribute BuildingSearchRequest buildingSearchRequest, HttpServletRequest request) {
         ModelAndView view = new ModelAndView("admin/building/list");
-        view.addObject("modelSearch", buildingSearchRequest);
-
-        List<BuildingSearchResponse> buildingSearchResponseList = new ArrayList<>();
-        BuildingSearchResponse buildingSearchResponse1 = new BuildingSearchResponse();
-        buildingSearchResponse1.setName("Nguyễn Văn Trọng");
-        buildingSearchResponse1.setNumberOfBasement(16L);
-        BuildingSearchResponse buildingSearchResponse2 = new BuildingSearchResponse();
-        buildingSearchResponse2.setName("Nguyễn Tiến Trọng");
-        buildingSearchResponse2.setNumberOfBasement(12L);
-
-        buildingSearchResponseList.add(buildingSearchResponse1);
-        buildingSearchResponseList.add(buildingSearchResponse2);
-        view.addObject("listStaff", userService.getStaffs());
-        view.addObject("buildingSearchResponseList", buildingSearchResponseList);
+        view.addObject("modelSearch", buildingSearchRequest); // Gửi thông tin tìm kiếm về client để hiển thị thông tin đã tìm kiếm
+        List<BuildingSearchResponse> buildingSearchResponses = buildingService.findAll(buildingSearchRequest);
+        view.addObject("buildingSearchResponses", buildingSearchResponses);
+        view.addObject("listStaff", userService.getStaffs()); // danh sách nhân viên
         view.addObject("districts", districtCode.type());
         view.addObject("types", buildingType.type());
         return view;
     }
 
-
+    // Thêm mới Building
     @RequestMapping(value="/admin/building-edit", method = RequestMethod.GET)
     public ModelAndView buildingEdit(@ModelAttribute("buildingEdit") BuildingDTO buildingDTO,HttpServletRequest request) {
         ModelAndView view = new ModelAndView("admin/building/edit");
@@ -59,15 +52,13 @@ public class BuildingController {
         return view;
     }
 
-
+    //Sửa building. nhận id của building
     @RequestMapping(value="/admin/building-edit-{id}", method = RequestMethod.GET)
-    public ModelAndView buildingEdit(@PathVariable("id") Long id, HttpServletRequest request) {
+    public ModelAndView buildingEdit(@PathVariable("id") Long Id, HttpServletRequest request) {
         ModelAndView view = new ModelAndView("admin/building/edit");
         //xuống db tìm building theo id
-        BuildingDTO buildingDTO = new BuildingDTO();
-        buildingDTO.setName("Trọng");
-        buildingDTO.setId(id);
-        view.addObject("buildingDTO", buildingDTO);
+        BuildingDTO buildingDTO =buildingService.getBuildingById(Id);
+        view.addObject("buildingEdit", buildingDTO);
         view.addObject("districts", districtCode.type());
         view.addObject("types", buildingType.type());
         return view;

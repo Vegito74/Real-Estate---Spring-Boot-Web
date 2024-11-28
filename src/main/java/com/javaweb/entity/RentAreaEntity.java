@@ -3,7 +3,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "rentarea")
-public class RenAreaEntity extends BaseEntity{
+public class RentAreaEntity extends BaseEntity{
     @Column(name = "value")
     private Long value;
 

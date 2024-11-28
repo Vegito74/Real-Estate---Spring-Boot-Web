@@ -85,8 +85,9 @@
                                         <!--/span-->
                                         <div class="col-md-11">
                                             <div class="form-group has-danger">
-                                                <input type="text" id="name" name="name"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="text" id="name" name="name"
+                                                            class="form-control form-control-danger" path="name"/>
+
                                                 <!-- <small class="form-control-feedback"> This field has error. </small> -->
                                             </div>
                                         </div>
@@ -103,10 +104,10 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
-                                                <form:select path="district" id="district" name="district"
+                                                <form:select path="district"
                                                              class="form-control custom-select"
-                                                             data-placeholder="Choose a Category" tabindex="1">
-                                                    <form:option value="QUAN_1">-- Chọn Quận --</form:option>
+                                                             tabindex="1">
+                                                    <form:option value="">-- Chọn Quận --</form:option>
                                                     <form:options items="${districts}"/>
 
                                                 </form:select>
@@ -119,8 +120,8 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
-                                                <input type="text" id="ward" name="ward"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="text" id="ward" name="ward"
+                                                            class="form-control form-control-danger" path="ward"/>
                                             </div>
                                         </div>
 
@@ -131,8 +132,8 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
-                                                <input type="text" id="street" name="street"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="text" id="street" name="street"
+                                                            class="form-control form-control-danger" path="street"/>
                                             </div>
                                         </div>
 
@@ -147,8 +148,8 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
-                                                <input type="text" id="structure" name="structure"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="text" id="structure" name="structure"
+                                                            class="form-control form-control-danger" path="structure"/>
                                             </div>
                                         </div>
                                         <div class="col-md-1 ">
@@ -170,8 +171,8 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
-                                                <input type="text" id="level" name="level"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="number" id="level" name="level"
+                                                            class="form-control form-control-danger" path="level"/>
                                             </div>
                                         </div>
                                     </div>
@@ -201,8 +202,9 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
-                                                <input type="number" id="floorArea" name="floorArea"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="number" id="floorArea" name="floorArea"
+                                                            class="form-control form-control-danger" path="floorArea"
+                                                            htmlEscape="false" required="true"/>
                                             </div>
                                         </div>
                                         <div class="col-md-1 ">
@@ -212,8 +214,8 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
-                                                <input type="number" id="rentArea" name="rentArea"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="text" id="rentArea" name="rentArea"
+                                                            class="form-control form-control-danger" path="rentArea"/>
                                             </div>
                                         </div>
 
@@ -224,8 +226,9 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
-                                                <input type="number" id="numberOfBasement" name="numberOfBasement"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="number" id="numberOfBasement" name="numberOfBasement"
+                                                            class="form-control form-control-danger"
+                                                            path="numberOfBasement"/>
                                             </div>
                                         </div>
                                     </div>
@@ -239,8 +242,8 @@
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group has-danger">
-                                                <input type="number" id="rentPrice" name="rentPrice"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="number" id="rentPrice" name="rentPrice"
+                                                            class="form-control form-control-danger" path="rentPrice"/>
                                             </div>
                                         </div>
                                         <div class="col-md-1 ">
@@ -250,8 +253,10 @@
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group has-danger">
-                                                <input type="text" id="rentPriceDescription" name="rentPriceDescription"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="text" id="rentPriceDescription"
+                                                            name="rentPriceDescription"
+                                                            class="form-control form-control-danger"
+                                                            path="rentPriceDescription"/>
                                             </div>
                                         </div>
                                     </div>
@@ -265,8 +270,8 @@
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group has-danger">
-                                                <input type="text" id="payment" name="payment"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="text" id="payment" name="payment"
+                                                            class="form-control form-control-danger" path="payment"/>
                                             </div>
                                         </div>
                                         <div class="col-md-1 ">
@@ -276,8 +281,8 @@
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group has-danger">
-                                                <input type="number" id="deposit" name="deposit"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="number" id="deposit" name="deposit"
+                                                            class="form-control form-control-danger" path="deposit"/>
                                             </div>
                                         </div>
 
@@ -293,8 +298,8 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
-                                                <input type="number" id="serviceFee" name="serviceFee"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="text" id="serviceFee" name="serviceFee"
+                                                            class="form-control form-control-danger" path="serviceFee"/>
                                             </div>
                                         </div>
 
@@ -305,8 +310,9 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
-                                                <input type="number" id="brokerageFee" name="brokerageFee"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="number" id="brokerageFee" name="brokerageFee"
+                                                            class="form-control form-control-danger"
+                                                            path="brokerageFee"/>
                                             </div>
                                         </div>
                                         <div class="col-md-1 ">
@@ -316,8 +322,8 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
-                                                <input type="number" id="carFee" name="carFee"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="text" id="carFee" name="carFee"
+                                                            class="form-control form-control-danger" path="carFee"/>
                                             </div>
                                         </div>
 
@@ -334,8 +340,9 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
-                                                <input type="number" id="overTimeFee" name="overTimeFee"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="text" id="overtimeFee" name="overtimeFee"
+                                                            class="form-control form-control-danger"
+                                                            path="overtimeFee"/>
                                             </div>
                                         </div>
 
@@ -346,8 +353,9 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
-                                                <input type="number" id="electricityFee" name="electricityFee"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="text" id="electricityFee" name="electricityFee"
+                                                            class="form-control form-control-danger"
+                                                            path="electricityFee"/>
                                             </div>
                                         </div>
                                         <div class="col-md-1 ">
@@ -357,8 +365,8 @@
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
-                                                <input type="number" id="motorbikeFee" name="motorbikeFee"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="text" id="motoFee" name="motoFee"
+                                                            class="form-control form-control-danger" path="motoFee"/>
                                             </div>
                                         </div>
 
@@ -375,8 +383,8 @@
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group has-danger">
-                                                <input type="text" id="rentTime" name="rentTime"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="text" id="rentTime" name="rentTime"
+                                                            class="form-control form-control-danger" path="rentTime"/>
                                             </div>
                                         </div>
                                         <div class="col-md-1 ">
@@ -386,8 +394,9 @@
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group has-danger">
-                                                <input type="text" id="decorationTime" name="decorationTime"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="text" id="decorationTime" name="decorationTime"
+                                                            class="form-control form-control-danger"
+                                                            path="decorationTime"/>
                                             </div>
                                         </div>
 
@@ -403,8 +412,9 @@
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group has-danger">
-                                                <input type="text" id="managerName" name="managerName"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="text" id="managerName" name="managerName"
+                                                            class="form-control form-control-danger"
+                                                            path="managerName"/>
                                             </div>
                                         </div>
                                         <div class="col-md-1 ">
@@ -414,8 +424,9 @@
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group has-danger">
-                                                <input type="number" id="managerPhone" name="managerPhone"
-                                                       class="form-control form-control-danger" placeholder="">
+                                                <form:input type="number" id="managerPhone" name="managerPhone"
+                                                            class="form-control form-control-danger"
+                                                            path="managerPhone"/>
                                             </div>
                                         </div>
 
@@ -431,14 +442,15 @@
                                         </div>
                                         <div class="col-md-11">
                                             <div class="form-group has-danger">
-                                                <textarea class="form-control" name="" id="note" name="note"></textarea>
+                                                <form:input type="textarea" id="note" name="note"
+                                                            class="form-control form-control-danger" path="note"/>
                                             </div>
                                         </div>
 
 
                                     </div>
                                     <div class="row  d-flex justify-content-center">
-                                        <c:if test="${not empty buildingDTO.id}">
+                                        <c:if test="${not empty buildingEdit.id}">
                                             <button id="btnAddOrUpdateBuilding" type="button"
                                                     class="btn btn-success ms-auto">
                                                 <i class="m-r-10 m-l-40 mdi mdi-content-save"></i>
@@ -447,7 +459,7 @@
 
                                             <form:hidden path="id" id="buildingId"/>
                                         </c:if>
-                                        <c:if test="${empty buildingDTO.id}">
+                                        <c:if test="${empty buildingEdit.id}">
                                             <button id="btnAddOrUpdateBuilding" type="button"
                                                     class="btn btn-success ms-auto">
                                                 <i class="m-r-10 m-l-40 mdi mdi-content-save"></i>
@@ -455,7 +467,15 @@
                                             </button>
 
                                         </c:if>
-                                        <button id="btnCancel" type="button" class="  btn btn-info ms-auto" style="margin-left: 5px">
+
+                                        <button id="btnCancel" type="button" class="  btn btn-info ms-auto"
+                                                style="margin-left: 5px">
+                                            <i class="mdi mdi-backspace"></i>
+                                            Hủy thao tác
+                                        </button>
+
+                                        <button id="" type="submit" class="  btn btn-info ms-auto"
+                                                style="margin-left: 5px">
                                             <i class="mdi mdi-backspace"></i>
                                             Hủy thao tác
                                         </button>
@@ -475,47 +495,82 @@
 </div>
 
 <script>
-    $('#btnCancel').click(function (){
-        window.location.href = '/admin/building-view'; //Quay về trang list
+    $('#btnCancel').click(function () {
+        window.location.href = '<c:url value ="/admin/building-view"/>'; //Quay về trang list
     })
 
+    var imageBase64 = '';
+    var imageName = '';
+
+
+
     $('#btnAddOrUpdateBuilding').click(function () {
+
         var data = {};
         var typeCode = [];
         var formData = $('#form-edit').serializeArray();
+
+
+
         $.each(formData, function (index, value) {
             if (value.name != 'typeCode') {
                 data["" + value.name + ""] = value.value;
             } else {
                 typeCode.push(value.value);
             }
+
+            if ('' != imageBase64) {
+                data['imageBase64'] = imageBase64;
+                data['imageName'] = imageName;
+            }
         });
         data['typeCode'] = typeCode;
-        if(typeCode != ''){}
-            addOrUpdateBuilding(data)
-        else{
-             window.location.href = '<c:url value="/admin/building-edit?typeCode=require"/>';
-
+        if (typeCode != '') {
+            addOrUpdateBuilding(data);
+        } else {
+            toastr.info('Chưa có thông tin loại tòa nhà!', 'Thông báo');
         }
 
     });
-     function addOrUpdateBuilding(data){
-         //Call api
-            $.ajax({
+
+    function openImage(input, imageView) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#' + imageView).attr('src', reader.result);
+            }
+        }
+    }
+
+
+    $('#uploadImage').change(function (event) {
+        var reader = new FileReader();
+        var file = $(this)[0].files[0];
+        reader.onload = function (e) {
+            imageBase64 = e.target.result;
+            imageName = file.name;
+        }
+    });
+
+
+    function addOrUpdateBuilding(data) {
+        //Call api
+        $.ajax({
             type: "POST",
             url: "${buildingAPI}",
             data: JSON.stringify(data),
             contentType: "application/JSON",
             dataType: "JSON",
             success: function (respond) {
-                console.log("Success!");
+                window.location.href = '<c:url value="/admin/building-view?message=success"/>';
             },
             error: function (respond) {
                 console.log("Failed!");
                 console.log(respond);
+                toastr.warning('Tên, Quận, Phường, Đường, Diện tích thuê, Số tầng hầm, diện tích sàn không được để trống!', 'Cảnh báo');
             }
 
         });
-}
+    }
 </script>
 

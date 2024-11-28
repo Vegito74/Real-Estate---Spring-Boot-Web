@@ -9,11 +9,11 @@ import javax.persistence.Table;
 @Table(name = "assignmentbuilding")
 public class AssignmentBuildingEntity extends BaseEntity{
     @ManyToOne
-    @JoinColumn(name = "staffid", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "staffid")
     private UserEntity staff;
 
     @ManyToOne
-    @JoinColumn(name = "buildingid", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "buildingid")
     private BuildingEntity building;
 
     public UserEntity getStaff() {

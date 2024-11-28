@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/common/taglib.jsp" %>
 <c:url var="buildingListURL" value="/admin/building-view"/>
-
+<c:url var="buildingAPI" value="/api/building"/>
 
 
 
@@ -44,7 +44,7 @@
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-5 align-self-center">
-                    <h4 class="page-title">Dashboard</h4>
+                    <h4 class="page-title">Quản lý Building</h4>
                 </div>
                 <div class="col-7 align-self-center">
                     <div class="d-flex align-items-center justify-content-end">
@@ -53,7 +53,7 @@
                                 <li class="breadcrumb-item">
                                     <a href="#">Home</a>
                                 </li>
-                                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                                <li class="breadcrumb-item active" aria-current="page">Quản lý Building</li>
                             </ol>
                         </nav>
                     </div>
@@ -71,21 +71,17 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-primary">
-                            <h4 class="m-b-0 text-white">Building Info</h4>
+                            <h4 class="m-b-0 text-white">Danh mục tìm kiếm</h4>
                         </div>
                         <form:form modelAttribute="modelSearch"  id="listFrom" action="${buildingListURL}" method="GET">
-                            <div class="card-body">
-                                <h4 class="card-title">Danh mục tìm kiếm</h4>
-                            </div>
-                            <hr>
-                            <div class="form-body">
+
+                            <div class="form-body" style="font-size: small">
                                 <div class="card-body">
                                     <div class="row ">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label"> Tên tòa nhà</label>
                                                         <form:input path="name" type="text" id="name" name="name" class="form-control"/>
-                                                <small class="form-control-feedback"> This is inline help </small>
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -94,7 +90,6 @@
                                                 <label class="control-label">Diện tích sàn</label>
                                                 <form:input type="number" id="floorArea" name="floorArea"
                                                        class="form-control form-control-danger" path="floorArea"/>
-                                                <small class="form-control-feedback"> This field has error. </small>
                                             </div>
                                         </div>
                                         <!--/span-->
@@ -107,50 +102,48 @@
                                                 <form:select path="district" id="districtId" name="districtCode"
                                                         class="form-control custom-select"
                                                         data-placeholder="Choose a Category" tabindex="1">
-                                                    <form:option value="QUAN_1">-- Chọn Quận --</form:option>
+                                                    <form:option value="">-- Chọn Quận --</form:option>
                                                     <form:options items="${districts}"/>
-
                                                 </form:select>
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group has-danger">
                                                 <label class="control-label">Phường</label>
-                                                <input type="text" id="ward" name="ward"
-                                                       class="form-control form-control-danger" value="${modelSearch.ward}">
+                                                <form:input type="text" id="ward" name="ward"
+                                                       class="form-control form-control-danger" path="ward"/>
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group has-danger">
                                                 <label class="control-label">Đường</label>
-                                                <input type="text" id="street" name="street"
-                                                       class="form-control form-control-danger"value="${modelSearch.street}">
+                                                <form:input type="text" id="street" name="street"
+                                                       class="form-control form-control-danger" path="street"/>
                                             </div>
                                         </div>
                                     </div>
                                     <!--/row-->
-
                                     <!--/row-->
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group has-danger">
                                                 <label class="control-label">Số tầng hầm</label>
-                                                <input type="number" id="numberOfBasement" name="numberOfBasement"
-                                                       class="form-control form-control-danger" value="${modelSearch.numberOfBasement}">
+                                                <form:input type="number" id="numberOfBasement" name="numberOfBasement"
+                                                       class="form-control form-control-danger" path="numberOfBasement"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group has-danger">
                                                 <label class="control-label">Hướng</label>
-                                                <input type="text" id="direction" name="direction"
-                                                       class="form-control form-control-danger" value="${modelSearch.direction}">
+                                                <form:input type="text" id="direction" name="direction"
+                                                       class="form-control form-control-danger" path="direction"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group has-danger">
                                                 <label class="control-label">Hạng</label>
-                                                <input type="number" id="level" name="level"
-                                                       class="form-control form-control-danger" value="${modelSearch.level}">
+                                                <form:input type="number" id="level" name="level"
+                                                       class="form-control form-control-danger" path="level"/>
                                             </div>
                                         </div>
                                     </div>
@@ -160,29 +153,29 @@
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
                                                 <label class="control-label">Diện tích từ</label>
-                                                <input type="number" id="areaFrom" name="areaFrom"
-                                                       class="form-control form-control-danger" value="${modelSearch.areaFrom}">
+                                                <form:input type="number" id="areaFrom" name="areaFrom"
+                                                       class="form-control form-control-danger" path="areaFrom"/>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
                                                 <label class="control-label">Diện tích đến</label>
-                                                <input type="number" id="areaTo" name="areaTo"
-                                                       class="form-control form-control-danger" value="${modelSearch.areaTo}">
+                                                <form:input type="number" id="areaTo" name="areaTo"
+                                                       class="form-control form-control-danger" path="areaTo"/>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
                                                 <label class="control-label">Giá thuê từ</label>
-                                                <input type="number" id="rentPriceFrom" name="rentPriceFrom"
-                                                       class="form-control form-control-danger" value="${modelSearch.rentPriceFrom}">
+                                                <form:input type="number" id="rentPriceFrom" name="rentPriceFrom"
+                                                       class="form-control form-control-danger" path="rentPriceFrom"/>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
                                                 <label class="control-label">Giá thuê đến</label>
-                                                <input type="number" id="rentPriceTo" name="rentPriceTo"
-                                                       class="form-control form-control-danger" value="${modelSearch.rentPriceTo}">
+                                                <form:input type="number" id="rentPriceTo" name="rentPriceTo"
+                                                       class="form-control form-control-danger" path="rentPriceTo"/>
                                             </div>
                                         </div>
                                     </div>
@@ -191,15 +184,15 @@
                                         <div class="col-md-4">
                                             <div class="form-group has-danger">
                                                 <label class="control-label">Tên quản lý</label>
-                                                <input type="text" id="managerName" name="managerName"
-                                                       class="form-control form-control-danger" value="${modelSearch.managerName}">
+                                                <form:input type="number" id="managerName" name="managerName"
+                                                       class="form-control form-control-danger" path="managerName"/>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group has-danger">
                                                 <label class="control-label">SĐT quản lý</label>
-                                                <input type="text" id="managerPhoneNumber" name="managerPhoneNumber"
-                                                       class="form-control form-control-danger" value="${modelSearch.managerPhone}">
+                                                <form:input type="number" id="managerPhone" name="managerPhone"
+                                                       class="form-control form-control-danger" path="managerPhone"/>
                                             </div>
                                         </div>
 
@@ -242,7 +235,7 @@
                                     </div>
                                 </div>
 
-                                <hr>
+
 
                             </div>
                         </form:form>
@@ -264,7 +257,7 @@
                                     <div class="table-responsive" style="font-family:'Times New Roman'">
                                         <table id="multi_control" class="table table-striped table-bordered display"
                                                style="width:100%">
-                                            <thead>
+                                            <thead style="font-size: medium">
                                             <tr role="row" >
                                                 <th>Tên tòa nhà</th>
                                                 <th>Địa chỉ</th>
@@ -280,9 +273,9 @@
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
-                                            <tbody>
-                                            <c:forEach var="item" items="${buildingSearchResponseList}">
- <tr>
+                                            <tbody style="font-size: smaller">
+                                            <c:forEach var="item" items="${buildingSearchResponses}">
+                                             <tr id="row_${item.id}">
                                                 <td>${item.name}</td>
                                                 <td>${item.address}</td>
                                                 <td>${item.numberOfBasement}</td>
@@ -306,14 +299,14 @@
                                                         <div class="dropdown-menu ">
                                                             <a class="dropdown-item"
                                                                href="/admin/building-edit-${item.id}">Edit</a>
-                                                            <a id="" onclick="deleteBuilding(5)" class="dropdown-item"
-                                                               href="javascript:void(0)">Delete</a>
+                                                            <a id="" onclick="deleteBuilding(${item.id})" class="dropdown-item "
+                                                               >Delete</a>
                                                             <div class="dropdown-divider"></div>
-                                                            <a type="button" class="dropdown-item btn"
+                                                            <a type="button" class="dropdown-item btn  "
                                                                data-toggle="modal"
                                                                data-target="#assignmentBuildingModal"
                                                                data-whatever="@getbootstrap"
-                                                               onclick="assignmentbuilding(1)">Thêm nhân viên
+                                                               onclick="assignmentbuilding(${item.id})">Thêm nhân viên
                                                                 quản lý</a>
                                                         </div>
                                                     </div>
@@ -325,18 +318,11 @@
                                                 </c:forEach>
 
 
-
-
-
-
-
-
-
                                             </tbody>
                                             <tfoot>
                                             <tr>
 
-                                                <th>Tên tòa nhà</th>
+                                                 <th>Tên tòa nhà</th>
                                                 <th>Địa chỉ</th>
                                                 <th>Số tầng hầm</th>
                                                 <th>Tên quản lý</th>
@@ -344,34 +330,10 @@
                                                 <th>DT sàn</th>
                                                 <th>DT thuê</th>
                                                 <th>DT trống</th>
+                                                <th>Giá thuê</th>
                                                 <th>Phí môi giới</th>
-                                                <th>Phí môi giới</th>
+                                                <th>Phí dịch vụ</th>
                                                 <th>Action</th>
-                                                <td class="">
-                                                    <div class="row d-flex justify-content-center">
-                                                        <button type="button"
-                                                                class="btn btn-info dropdown-toggle "
-                                                                data-toggle="dropdown" aria-haspopup="true"
-                                                                aria-expanded="false">
-                                                            <i class="ti-settings"> Action</i>
-                                                        </button>
-                                                        <div class="dropdown-menu ">
-                                                            <a class="dropdown-item"
-                                                               href="javascript:void(0)">Edit</a>
-                                                            <a  class="dropdown-item"
-                                                               href="">Delete</a>
-                                                            <div class="dropdown-divider"></div>
-                                                            <a type="button" class="dropdown-item btn"
-                                                               data-toggle="modal"
-                                                               data-target="#assignmentBuildingModal"
-                                                               data-whatever="@getbootstrap"
-                                                               onclick="assignmentbuilding(1)">Thêm nhân viên
-                                                                quản lý</a>
-                                                        </div>
-                                                    </div>
-
-
-                                                </td>
                                             </tr>
                                             </tfoot>
 
@@ -407,7 +369,7 @@
                         aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form>
+
                     <div class="form-group">
                         <label for="recipient-name" class="control-label">Nhân viên:</label>
                         <select name="staffId" class="form-contưrol custom-select"
@@ -418,7 +380,7 @@
                             <option value="Category 4">Nguyễn Trung Đức</option>
                         </select>
                     </div>
-                    <input type="hidden" id="buildingId" name="buildingId" value="3487">
+                    <input type="hidden" id="buildingId"  value="1">
                     <table class="table " id="staffList">
                         <thead class="bg-success text-white align-items-center">
                         <tr class="text-center">
@@ -429,34 +391,16 @@
                         </tr>
                         </thead>
                         <tbody class="border border-success text-center">
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="" id="checkbox1" value="1" checked>
-                            </td>
-                            <td> Nguyễn Văn Trọng</td>
-                        </tr>
-                        <tr>
 
-                            <td>
-                                <input type="checkbox" class="" value="1">
-                            </td>
-                            <td>Nguyễn Tiến Duy</td>
-                        </tr>
-                        <tr>
-
-                            <td>
-                                <input type="checkbox" class="" value="1">
-                            </td>
-                            <td>Nguyễn Trung Đức</td>
-                        </tr>
                         </tbody>
                     </table>
-                </form>
-            </div>
-            <div class="modal-footer">
+                    <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button id="btnAssignmentBuilding" type="button" class="btn btn-primary">Thêm</button>
             </div>
+
+            </div>
+
         </div>
     </div>
 </div>
@@ -466,9 +410,39 @@
     // Hiển thị from nhân viên
     function assignmentbuilding(buildingId) {
         $('#assignmentBuildingModal').modal();
-        $('#buildingId').val();
+        $('#buildingId').val(buildingId);//set giá trị cho input hidden của danh sách giao nhân viên
+        loadStaff(buildingId);
     }
 
+    // load danh sách nhân viên
+    function loadStaff(buildingId){
+        $.ajax({
+            type: "GET",
+            url: "/api/building/" + buildingId +"/staffs",
+            //data: JSON.stringify(buildingId),
+            //contentType: "application/JSON",
+            dataType: "JSON",
+            success: function (response) {
+                var row = '';
+                $.each(response.data, function (index, item){
+                    row += '<tr>';
+                    row += '<td class="text-center"><input type="checkbox" value='+item.staffId +' id="checkbox_'+ item.staffId+ '" ' + item.checked +'></td>';
+                    row += '<td class ="text-center">' + item.fullName + '</td>';
+                    row += '</tr>';
+                });
+                $('#staffList tbody').html(row)
+                console.info("Success!");
+            },
+            error: function (response) {
+                console.log("Failed!");
+                window.location.href = '<c:url value="/admin/building-view?message=error"/>';
+                console.log(response );
+            }
+
+        });
+    }
+
+    // click button Giao tòa nhà cho nv
     $('#btnAssignmentBuilding').click(function (e) {
         e.preventDefault();
         var data = {};
@@ -477,8 +451,34 @@
             return $(this).val();
         }).get();
         data['staffs'] = staffs;
+        if (data['staffs'] != ''){
+            assignment(data);
+        }
         console.log("OK");
     });
+
+    // ajax call api Giao toà nhà cho nhân viên
+    function assignment(data){
+     $.ajax({
+            type: "POST",
+            url: "${buildingAPI}/assignment",
+            data: JSON.stringify(data),
+            contentType: "application/JSON",
+            dataType: "JSON",
+            success: function (response) {
+                console.log("Giao tòa nhà cho nhân viên thành công!");
+                $('#assignmentBuildingModal').modal('hide');
+
+
+
+            },
+            error: function (response) {
+                console.info("Giao không thành công");
+                console.log(response);
+            }
+
+        });
+    }
 
     $('#btnSearchBuilding').click(function (e) {
         e.preventDefault();
@@ -486,23 +486,29 @@
     });
 
       function deleteBuilding(id) {
+
           var buildingId = [id];
-          deleteBuildings(buildingId);
+          var row = $("#row_"+id);
+          deleteBuildings(buildingId, row);
     }
 
-    function deleteBuildings(data) {
+    function deleteBuildings(buildingId, row) {//Xóa tòa nhà
         $.ajax({
             type: "DELETE",
-            url: "/api/building/" + data,
-            data: JSON.stringify(data),
+            url: "${buildingAPI}/" + buildingId ,
+            data: JSON.stringify(buildingId),
             contentType: "application/JSON",
             dataType: "JSON",
+
             success: function (respond) {
                 console.log("Success!");
+                 $('#multi_control').DataTable().row(row).remove().draw();
+                   toastr.success('Xóa tòa nhà thành công!', 'Success');
             },
             error: function (respond) {
                 console.log("Failed!");
                 console.log(respond);
+
             }
 
         });

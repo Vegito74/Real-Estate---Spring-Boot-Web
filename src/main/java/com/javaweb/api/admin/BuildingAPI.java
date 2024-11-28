@@ -1,7 +1,12 @@
 package com.javaweb.api.admin;
 
-import com.javaweb.entity.BuildingEntity;
+import com.javaweb.model.dto.AssignmentBuildingDTO;
 import com.javaweb.model.dto.BuildingDTO;
+import com.javaweb.model.response.ResponseDTO;
+import com.javaweb.service.AssignmentBuildingService;
+import com.javaweb.service.BuildingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,15 +15,33 @@ import java.util.List;
 @RequestMapping("/api/building")
 public class BuildingAPI {
 
+    @Autowired
+    private BuildingService buildingService;
+
+    @Autowired
+    private AssignmentBuildingService assignmentBuildingService;
     @PostMapping
-    public BuildingDTO addOrUpdateBuilding(@RequestBody BuildingDTO  buildingDTO) {
-        // xuống DB để updat or thêm
-        return buildingDTO;
+    public ResponseEntity<BuildingDTO> addOrUpdateBuilding(@RequestBody BuildingDTO  buildingDTO) {
+
+        return ResponseEntity.ok(buildingService.addOrUpdateBuilding(buildingDTO));
     }
 
     @DeleteMapping("/{ids}")
-    public void deleteBuilding(@PathVariable List<Long> ids) {
+    public boolean deleteBuilding(@PathVariable List<Long> ids) {
         //Xuống DB
-        System.out.println("OK");
+       buildingService.deleteBuilding(ids);
+       return true;
+    }
+
+    @GetMapping("/{id}/staffs")
+    public ResponseDTO loadStaffs(@PathVariable Long id) {
+        ResponseDTO result = buildingService.listStaffs(id);
+        return  result;
+    }
+
+    @PutMapping("/assignment")
+    public boolean updateAssignmentBuilding(@RequestBody AssignmentBuildingDTO assignmentBuildingDTO) {
+        assignmentBuildingService.addAssigmentBuilding(assignmentBuildingDTO);
+        return true;
     }
 }

@@ -9,7 +9,7 @@ import com.javaweb.model.request.BuildingSearchRequest;
 import com.javaweb.model.response.BuildingSearchResponse;
 import com.javaweb.model.response.ResponseDTO;
 import com.javaweb.model.response.StaffResponseDTO;
-import com.javaweb.repository.AssignmentBuildingRepository;
+//import com.javaweb.repository.AssignmentBuildingRepository;
 import com.javaweb.repository.BuildingRepository;
 import com.javaweb.repository.UserRepository;
 import com.javaweb.service.AssignmentBuildingService;
@@ -38,19 +38,20 @@ public class BuildingServiceImpl implements BuildingService {
     @Autowired
     private BuildingDTOConverter buildingDTOConverter;
 
-    @Autowired
-    private AssignmentBuildingRepository assignmentBuildingRepository;
+//    @Autowired
+//    private AssignmentBuildingRepository assignmentBuildingRepository;
     @Autowired
     private ModelMapper modelMapper;
-
-    @Autowired
-    private AssignmentBuildingService assignmentBuildingService;
+//
+//    @Autowired
+//    private AssignmentBuildingService assignmentBuildingService;
     @Autowired
     private RentAreaService rentAreaService;
+
     @Autowired
     private UploadFileUtils uploadFileUtils;
-    @Autowired
-    private AssignmentBuildingServiceImpl assignmentBuildingServiceImpl;
+//    @Autowired
+//    private AssignmentBuildingServiceImpl assignmentBuildingServiceImpl;
 
     @Override
     public List<BuildingSearchResponse> findAll(BuildingSearchRequest buildingSearchRequest) {
@@ -68,18 +69,17 @@ public class BuildingServiceImpl implements BuildingService {
     @Override
     public BuildingDTO addOrUpdateBuilding(BuildingDTO buildingDTO) {
         if(!checkAddBuilding(buildingDTO)) return  null;
-        Long buildingId = buildingDTO.getId();
-        BuildingEntity buildingEntity = modelMapper.map(buildingDTO, BuildingEntity.class);
-        buildingEntity.setType(String.join("," , buildingDTO.getTypeCode()));
-        if(buildingId != null){
-            BuildingEntity foundBuilding = buildingRepository.findById(buildingId)
-                    .orElseThrow(()->new RuntimeException("Building not found"));
-            buildingEntity.setAvatar(foundBuilding.getAvatar());
-        }
+        BuildingEntity buildingEntity = buildingDTOConverter.toBuildingEntity(buildingDTO);
+        //Long buildingId = buildingDTO.getId();
+//        BuildingEntity buildingEntity = modelMapper.map(buildingDTO, BuildingEntity.class);
+//        buildingEntity.setType(String.join("," , buildingDTO.getTypeCode()));
+//        if(buildingId != null){
+//            BuildingEntity foundBuilding = buildingRepository.findById(buildingId)
+//                    .orElseThrow(()->new RuntimeException("Building not found"));
+//            buildingEntity.setAvatar(foundBuilding.getAvatar());
+//        }
         //saveThumbnail(buildingDTO, buildingEntity);
         buildingRepository.save(buildingEntity);
-        buildingDTO.setId(buildingEntity.getId());
-       if(StringUtils.check(buildingDTO.getRentArea())) rentAreaService.addRentArea(buildingDTO);
        return  buildingDTO;
     }
 
@@ -117,8 +117,6 @@ public class BuildingServiceImpl implements BuildingService {
     }
     @Override
     public void deleteBuilding(List<Long>  buildingId) {
-        rentAreaService.deleteByBuildingId(buildingId);
-        assignmentBuildingService.deleteByBuildingId(buildingId);
         buildingRepository.deleteByIdIn(buildingId);
     }
 
@@ -129,18 +127,22 @@ public class BuildingServiceImpl implements BuildingService {
         return building;
     }
 
-    @Override
-    public void insertAssignedStaff(AssignmentBuildingDTO assignmentBuildingDTO) {
-
+    @Override    //Ver--2
+    public AssignmentBuildingDTO addAssignmentBuildingEntity(AssignmentBuildingDTO assignmentBuildingDTO) {
+        BuildingEntity buildingEntity = buildingRepository.findById(assignmentBuildingDTO.getBuildingId()).get();
+        List<UserEntity> staffs = userRepository.findByIdIn(assignmentBuildingDTO.getStaffs());
+        buildingEntity.setUserEntities(staffs);
+        buildingRepository.save(buildingEntity);
+        return assignmentBuildingDTO;
     }
 
 
     @Override
     public ResponseDTO listStaffs(Long buildingId) {
-        //BuildingEntity building = buildingRepository.findById(buildingId).get();
+        BuildingEntity building = buildingRepository.findById(buildingId).get();
         List<UserEntity> staffs = userRepository.findByStatusAndRoles_Code(1,"STAFF");
-        List<UserEntity> staffAssigment = userRepository.findAll();
-//        List<UserEntity> staffAssigment = building.getUserEntities();
+       // List<UserEntity> staffAssigment = userRepository.findAll();
+        List<UserEntity> staffAssigment = building.getUserEntities();
         List<StaffResponseDTO> staffResponseDTOs = new ArrayList<>();
         ResponseDTO responseDTO = new ResponseDTO();
         for (UserEntity staff : staffs) {

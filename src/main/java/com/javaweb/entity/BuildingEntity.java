@@ -102,24 +102,23 @@ public class BuildingEntity  extends BaseEntity{
     private String managerPhone;
 
 
-    @OneToMany(mappedBy = "building",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "building",fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
     private List<RentAreaEntity> rentAreas = new ArrayList<>();
 
-    @OneToMany(mappedBy ="building", fetch = FetchType.LAZY)
-    private List<AssignmentBuildingEntity> assignmentBuildings = new ArrayList<>();
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "assignmentbuilding",
-//        joinColumns =  @JoinColumn(name = "buildingid", nullable = false),
-//            inverseJoinColumns =  @JoinColumn(name = "staffid", nullable = false))
-//    private List<UserEntity> userEntities = new ArrayList<>();
+//    @OneToMany(mappedBy ="building", fetch = FetchType.LAZY)
+//    private List<AssignmentBuildingEntity> assignmentBuildings = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "assignmentbuilding",
+        joinColumns =  @JoinColumn(name = "buildingid", nullable = false),
+            inverseJoinColumns =  @JoinColumn(name = "staffid", nullable = false))
+    private List<UserEntity> userEntities = new ArrayList<>();
 
-
-    public List<AssignmentBuildingEntity> getAssignmentBuildings() {
-        return assignmentBuildings;
+    public List<UserEntity> getUserEntities() {
+        return userEntities;
     }
 
-    public void setAssignmentBuildings(List<AssignmentBuildingEntity> assignmentBuildings) {
-        this.assignmentBuildings = assignmentBuildings;
+    public void setUserEntities(List<UserEntity> userEntities) {
+        this.userEntities = userEntities;
     }
 
     public List<RentAreaEntity> getRentAreas() {

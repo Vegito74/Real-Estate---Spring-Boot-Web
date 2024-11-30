@@ -27,16 +27,16 @@ public class RentAreaServiceImpl implements RentAreaService {
     @Override
     public void addRentArea(BuildingDTO buildingDTO) {
 
-        if (buildingDTO.getId() != null ) {
-            BuildingEntity buildingEntity = buildingRepository.findById(buildingDTO.getId()).get();
-            rentAreaRepository.deleteByBuilding(buildingEntity);
-        }// Xoá dữ liệu cũ
-
-        String[] rentAreas = buildingDTO.getRentArea().trim().split(",");
-        for (String val : rentAreas){
-            RentAreaEntity rentAreaEntity = rentAreaConverter.toRentAreaEntity(buildingDTO, Long.valueOf(val));
-            rentAreaRepository.save(rentAreaEntity);
-        }
+//        if (buildingDTO.getId() != null ) {
+//            BuildingEntity buildingEntity = buildingRepository.findById(buildingDTO.getId()).get();
+//            rentAreaRepository.deleteByBuilding(buildingEntity);
+//        }// Xoá dữ liệu cũ
+//
+//        String[] rentAreas = buildingDTO.getRentArea().trim().split(",");
+//        for (String val : rentAreas){
+//            RentAreaEntity rentAreaEntity = rentAreaConverter.toRentAreaEntity(buildingDTO, Long.valueOf(val));
+//            rentAreaRepository.save(rentAreaEntity);
+//        }
     }
 
     @Override

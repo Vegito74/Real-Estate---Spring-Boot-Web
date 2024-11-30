@@ -460,17 +460,14 @@
     // ajax call api Giao toà nhà cho nhân viên
     function assignment(data){
      $.ajax({
-            type: "POST",
+            type: "PUT",
             url: "${buildingAPI}/assignment",
             data: JSON.stringify(data),
             contentType: "application/JSON",
             dataType: "JSON",
             success: function (response) {
-                console.log("Giao tòa nhà cho nhân viên thành công!");
+                toastr.success("Giao tòa nhà cho nhân viên thành công.", "Success!");
                 $('#assignmentBuildingModal').modal('hide');
-
-
-
             },
             error: function (response) {
                 console.info("Giao không thành công");

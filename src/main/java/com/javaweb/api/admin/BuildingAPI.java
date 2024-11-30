@@ -41,7 +41,8 @@ public class BuildingAPI {
 
     @PutMapping("/assignment")
     public boolean updateAssignmentBuilding(@RequestBody AssignmentBuildingDTO assignmentBuildingDTO) {
-        assignmentBuildingService.addAssigmentBuilding(assignmentBuildingDTO);
+        buildingService.addAssignmentBuildingEntity(assignmentBuildingDTO);
+        //assignmentBuildingService.addAssigmentBuilding(assignmentBuildingDTO); ver--1
         return true;
     }
 }

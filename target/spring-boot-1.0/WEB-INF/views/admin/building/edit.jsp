@@ -510,20 +510,6 @@
         var typeCode = [];
         var formData = $('#form-edit').serializeArray();
 
-        // Lấy tất cả các input trong form
-        const inputs = document.querySelectorAll('#form-edit input');
-        let isValid = true;
-        // Kiểm tra từng input
-        inputs.forEach(input => {
-            if (!input.checkValidity()) {
-                input.reportValidity(); // Hiển thị thông báo lỗi mặc định
-                isValid = false;
-                return; // Dừng kiểm tra tiếp theo
-            }
-        });
-        if (isValid) {
-            alert('Tất cả các trường hợp lệ!');
-        }
 
 
         $.each(formData, function (index, value) {

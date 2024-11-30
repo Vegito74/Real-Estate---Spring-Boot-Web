@@ -16,5 +16,6 @@ public interface BuildingService {
     List<BuildingSearchResponse> findAll(BuildingSearchRequest buildingSearchRequest);
     void deleteBuilding(List<Long>  buildingId);
     BuildingDTO getBuildingById(Long buildingId);
-    void insertAssignedStaff(AssignmentBuildingDTO assignmentBuildingDTO);
+    AssignmentBuildingDTO addAssignmentBuildingEntity(AssignmentBuildingDTO assignmentBuildingDTO);
+
 }

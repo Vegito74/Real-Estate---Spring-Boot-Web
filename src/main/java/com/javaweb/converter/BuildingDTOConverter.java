@@ -19,6 +19,8 @@ public class BuildingDTOConverter {
 
     @Autowired
             private ModelMapper modelMapper;
+    @Autowired
+    private RentAreaConverter rentAreaConverter;
     // Chuyển đỏi dữ liệu bằng ModelMapper
 
     public BuildingSearchResponse toBuildingSearchResponse(BuildingEntity buildingEntity){
@@ -53,4 +55,16 @@ public class BuildingDTOConverter {
 
         return building;
     }
+
+
+
+
+    public BuildingEntity toBuildingEntity(BuildingDTO buildingDTO){
+        BuildingEntity buildingEntity = modelMapper.map(buildingDTO, BuildingEntity.class);
+        buildingEntity.setType(String.join("," , buildingDTO.getTypeCode()));
+        buildingEntity.setRentAreas(rentAreaConverter.toRentAreaEntityList(buildingDTO, buildingEntity));
+        return buildingEntity;
+    }
+
+
 }

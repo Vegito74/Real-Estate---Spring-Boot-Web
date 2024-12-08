@@ -1,24 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>	
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Đăng nhập</title>
-</head>
-<body>
-	<div class="container">
-		<!-- <h1 class="form-heading">login Form</h1> -->
-		<div class="login-form">
-			<div class="main-div">
-				<c:if test="${param.incorrectAccount != null}">
-					<div class="alert alert-danger">	
+
+
+
+
+	<div class="main-wrapper ">
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+
+		<c:if test="${param.incorrectAccount != null}">
+					<div class="alert alert-danger">
 							Username or password incorrect
 					</div>
 				</c:if>
 				<c:if test="${param.accessDenied != null}">
-					<div class="alert alert-danger">	
+					<div class="alert alert-danger">
 							You Not authorize
 					</div>
 				</c:if>
@@ -27,59 +25,85 @@
 							Session Timeout
 					</div>
 				</c:if>
-				<div class="container-fluid" >
-					<section class="gradient-custom">
-						<div class="page-wrapper">
-							<div class="row d-flex justify-content-center align-items-center">
-								<div class="col-12 col-md-8 col-lg-6 col-xl-5">
-									<div class="card text-white" style="border-radius: 1rem; background-color: #35bf76;">
-										<div class="card-body p-5">
-											<div class="mb-md-5 mt-md-4 pb-5 text-center">
-												<h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-												<p class="text-white-50 mb-5">Please enter your login and password!</p>
-												<form action="j_spring_security_check" id="formLogin" method="post">
-												<div class="form-outline form-white mb-4">
-													<label class="form-label" for="userName">Email</label>
-													<input type="text" class="form-control" id="userName" name="j_username" placeholder="Tên đăng nhập">
-												</div>
+        <!-- ============================================================== -->
+        <!-- Preloader - style you can find in spinners.css -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url(login/assets/images/big/auth-bg.jpg) no-repeat center center;">
+            <div class="auth-box">
+                <div id="loginform">
+                    <div class="logo">
+                        <span class="db"><img src="login/assets/images/logo-icon.png" alt="logo" /></span>
+                        <h5 class="font-medium m-b-20">Sign In to Admin</h5>
+                    </div>
+                    <!-- Form -->
+                    <div class="row">
+                        <div class="col-12">
+                            <form class="form-horizontal m-t-20" id="formLogin" action="j_spring_security_check" method="post">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="ti-user"></i></span>
+                                    </div>
+                                    <input type="text" id="userName" name="j_username" class="form-control form-control-lg" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2"><i class="ti-pencil"></i></span>
+                                    </div>
+                                    <input type="password" id="password" name="j_password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                            <label class="custom-control-label" for="customCheck1">Remember me</label>
+                                            <a href="javascript:void(0)" id="to-recover" class="text-dark float-right"><i class="fa fa-lock m-r-5"></i> Forgot pwd?</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group text-center">
+                                    <div class="col-xs-12 p-b-20">
+                                        <button class="btn btn-block btn-lg btn-info" type="submit">Đăng Nhập</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+                                        <div class="social">
+                                            <a href="javascript:void(0)" class="btn  btn-facebook" data-toggle="tooltip" title="" data-original-title="Login with Facebook"> <i aria-hidden="true" class="fab  fa-facebook"></i> </a>
+                                            <a href="javascript:void(0)" class="btn btn-googleplus" data-toggle="tooltip" title="" data-original-title="Login with Google"> <i aria-hidden="true" class="fab  fa-google-plus"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group m-b-0 m-t-10">
+                                    <div class="col-sm-12 text-center">
+                                        Don't have an account? <a href="authentication-register1.html" class="text-info m-l-5"><b>Sign Up</b></a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Login box.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper scss in scafholding.scss -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- All Required js -->
+    <!-- ============================================================== -->
 
-												<div class="form-outline form-white mb-4">
-													<label class="form-label" for="password">Password</label>
-													<input type="password" class="form-control" id="password" name="j_password" placeholder="Mật khẩu">
-												</div>
-
-												<div class="form-check d-flex justify-content-center mb-5">
-													<div><input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" /></div>
-													<div><label class="form-check-label">
-                                                        Remember Password
-                                                    </label></div>
-												</div>
-
-												<p class="small mb-2 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
-
-												<button type="submit" class="btn btn-primary" >Đăng nhập</button>
-												</form>
-												<div class="d-flex justify-content-center text-center mt-2 pt-1">
-													<a href="#!" class="login-extension text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
-													<a href="#!" class="login-extension text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
-													<a href="#!" class="login-extension text-white"><i class="fab fa-google fa-lg"></i></a>
-												</div>
-											</div>
-											<div class="text-center">
-												<p class="mb-0 tex-center account">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign Up</a></p>
-											</div>
-
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</section>
-				</div>
-				<%--<script src="./assets/dist/js/boostrap-v5/bootstrap.js"></script>--%>
-				<%--<script src="./assets/dist/js/fontawsome-v5/all.js"></script>--%>
-			</div>
-		</div>
-	</div>
-</body>
-</html>

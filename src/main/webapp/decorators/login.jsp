@@ -3,13 +3,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title><dec:title default="Đăng nhập" /></title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<link href="style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="login/assets/images/favicon.png">
+    <title>Nice admin Template </title>
+    <!-- Custom CSS -->
+    <link href="login/dist/css/style.min.css" rel="stylesheet">
 </head>
 <body id="LoginForm" style="background-color: #2c7659">
+
+    <!-- ============================================================== -->
+    <!-- This page plugin js -->
+    <!-- ============================================================== -->
+
     <dec:body/>
+    <script src="login/assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="login/assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="login/assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+
 </body>
 </html>

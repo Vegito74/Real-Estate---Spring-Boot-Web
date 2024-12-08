@@ -1,170 +1,239 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<%@include file="/common/taglib.jsp" %>
+<%--
+  Created by IntelliJ IDEA.
+  User: Trọng Nguyễn
+  Date: 11/6/2024
+  Time: 7:09 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="/common/taglib.jsp" %>
+<c:url var="buildingListURL" value="/admin/building-view"/>
+<c:url var="buildingAPI" value="/api/building"/>
 <c:url var="formUrl" value="/admin/user-list"/>
 <c:url var="formAjax" value="/api/user"/>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>
-        <%--<spring:message code="label.user.list"/>--%>
-        Danh sách người dùng
-    </title>
-</head>
 
-<body>
-<div class="main-content">
-    <form:form modelAttribute="model" action="${formUrl}" id="listForm" method="GET">
-        <div class="main-content-inner">
-            <div class="breadcrumbs" id="breadcrumbs">
-                <script type="text/javascript">
-                    try {
-                        ace.settings.check('breadcrumbs', 'fixed')
-                    } catch (e) {
-                    }
-                </script>
+<!-- ============================================================== -->
+<!-- Preloader - style you can find in spinners.css -->
+<!-- ============================================================== -->
 
-                <ul class="breadcrumb">
-                    <li>
-                        <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="<c:url value="/admin/home"/>">
-                                <%--<spring:message code="label.home"/>--%>
-                            Trang chủ
-                        </a>
-                    </li>
-                    <li class="active">
-                            <%--<spring:message code="label.user.list"/>--%>
-                        Danh sách người dùng
-                    </li>
-                </ul>
-                <!-- /.breadcrumb -->
+<!-- ============================================================== -->
+<!-- Main wrapper - style you can find in pages.scss -->
+<!-- ============================================================== -->
+
+<!-- ============================================================== -->
+<!-- Topbar header - style you can find in pages.scss -->
+<!-- ============================================================== -->
+
+<!-- ============================================================== -->
+<!-- End Topbar header -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Left Sidebar - style you can find in sidebar.scss -->
+<!-- ============================================================== -->
+
+<!-- ============================================================== -->
+<!-- End Left Sidebar - style you can find in sidebar.scss -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Page wrapper -->
+<!-- ============================================================== -->
+<div class="page-wrapper">
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <h4 class="page-title">Quản lý User</h4>
             </div>
-            <div class="page-content">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <c:if test="${messageResponse!=null}">
-                            <div class="alert alert-block alert-${alert}">
-                                <button type="button" class="close" data-dismiss="alert">
-                                    <i class="ace-icon fa fa-times"></i>
-                                </button>
-                                    ${messageResponse}
-                            </div>
-                        </c:if>
-                        <!-- PAGE CONTENT BEGINS -->
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="widget-box table-filter">
-                                    <div class="widget-header">
-                                        <h4 class="widget-title">
-                                                <%--<spring:message code="label.search"/>--%>
-                                            Tìm kiếm
-                                        </h4>
-                                        <div class="widget-toolbar">
-                                            <a href="#" data-action="collapse">
-                                                <i class="ace-icon fa fa-chevron-up"></i>
-                                            </a>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Quản lý User</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <form:form modelAttribute="model" id="listFrom" action="${formUrl}" method="GET">
+<%--                    <div class="card">--%>
+<%--                        <div class="card-header bg-primary">--%>
+<%--                            <h4 class="m-b-0 text-white">Danh mục tìm kiếm</h4>--%>
+<%--                        </div>--%>
+
+
+<%--                        <div class="form-body" style="font-size: small">--%>
+<%--                            <div class="card-body">--%>
+<%--                                <div class="row ">--%>
+<%--                                    <div class="col-md-12">--%>
+<%--                                        <div class="form-group">--%>
+<%--                                            <label class="control-label">Giá trị cần tìm</label>--%>
+<%--                                            <form:input path="searchValue" cssClass="form-control input-sm"/>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+
+<%--                                </div>--%>
+<%--                                <!--/row-->--%>
+
+<%--                                <div class="row d-flex justify-content-center">--%>
+
+<%--                                    <button id="btnSearchBuilding" type="button"--%>
+<%--                                            class="btn btn-success ms-auto">--%>
+<%--                                        <i class="fas fa-search"></i>--%>
+<%--                                        Tìm kiếm--%>
+<%--                                    </button>--%>
+
+
+<%--                                </div>--%>
+<%--                            </div>--%>
+
+
+<%--                        </div>--%>
+<%--                    </div>--%>
+                    <!-- Multiple table control element -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <h4 class="card-title col-lg-6">Danh sách User</h4>
+                                        <div class="col-lg-6 d-flex justify-content-end">
+                                            <a type="button" class="btn btn-success" id="addBuilding"
+                                               href="/admin/building-edit"><i class="fa fa-user"></i> Add User</a>
                                         </div>
                                     </div>
-                                    <div class="widget-body">
-                                        <div class="widget-main">
-                                            <div class="form-horizontal">
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label">
-                                                            <%--<spring:message code="label.search.value"/>--%>
-                                                        Giá trị cần tìm
-                                                    </label>
-                                                    <div class="col-sm-8">
-                                                        <div class="fg-line">
-                                                            <form:input path="searchValue" cssClass="form-control input-sm"/>
+                                    <h6 class="card-subtitle">Bảng danh sách thông tin các User trong hệ thống
+                                    </h6>
+                                    <div class="table-responsive" style="font-family:'Times New Roman'">
+                                        <table id="multi_control" class="table table-striped table-bordered display"
+                                               style="width:100%">
+                                            <thead style="font-size: medium">
+                                            <tr role="row">
+                                                <th>Username</th>
+                                                <th>Fullname</th>
+                                                <th>Email</th>
+                                                <th>Ngày khởi tạo</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody style="font-size: smaller">
+                                            <c:forEach var="item" items="${users}">
+                                                <tr id="row_${item.id}">
+                                                    <td>${item.userName}</td>
+                                                    <td>${item.fullName}</td>
+                                                    <td>${item.email}</td>
+                                                    <td>${item.createdDate}</td>
+
+                                                    <td class="col-lg-2">
+                                                        <div class="row d-flex justify-content-center">
+                                                            <a type="button" href="<c:url value="/admin/user-edit-${item.id}"/>"
+                                                                    class="btn btn-secondary dropdown-toggle "
+                                                                    >
+                                                                <i class="ti-settings">  Update</i>
+                                                            </a>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="col-sm-2 control-label"></label>
-                                                    <div class="col-sm-8">
-                                                        <button id="btnSearch" type="button"
-                                                                class="btn btn-sm btn-success">
-                                                                <%--spring:message code="label.search"/>--%>
-                                                            Tìm kiếm
-                                                            <i class="ace-icon fa fa-arrow-right icon-on-right bigger-110"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
+
+                                                    </td>
+
+                                                </tr>
+                                            </c:forEach>
+                                            </tbody>
+                                            <tfoot>
+                                            <tr>
+
+                                               <th>Username</th>
+                                                <th>Fullname</th>
+                                                <th>Email</th>
+                                                <th>Ngày khởi tạo</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </tfoot>
+
+                                        </table>
+
                                     </div>
-                                </div>
-                                <div class="table-btn-controls">
-                                    <div class="pull-right tableTools-container">
-                                        <div class="dt-buttons btn-overlap btn-group">
-                                            <a flag="info"
-                                               class="dt-button buttons-colvis btn btn-white btn-primary btn-bold"
-                                               data-toggle="tooltip"
-                                                <%--title='<spring:message code="label.user.add"/>'--%>
-                                               title="Thêm người dùng"
-                                               href='<c:url value="/admin/user-edit"/>'>
-															<span>
-																<i class="fa fa-plus-circle bigger-110 purple"></i>
-															</span>
-                                            </a>
-                                            <button id="btnDelete" type="button" disabled
-                                                    class="dt-button buttons-html5 btn btn-white btn-primary btn-bold"
-                                                    data-toggle="tooltip"
-                                                    title="Xóa bài viết" onclick="warningBeforeDelete()">
-															<span>
-																<i class="fa fa-trash-o bigger-110 pink"></i>
-															</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <div class="table-responsive">
-                                    <display:table name="model.listResult" cellspacing="0" cellpadding="0"
-                                                   requestURI="${formUrl}" partialList="true" sort="external"
-                                                   size="${model.totalItems}" defaultsort="2" defaultorder="ascending"
-                                                   id="tableList" pagesize="${model.maxPageItems}"
-                                                   export="false"
-                                                   class="table table-fcv-ace table-striped table-bordered table-hover dataTable no-footer"
-                                                   style="margin: 3em 0 1.5em;">
-                                        <display:column title="<fieldset class='form-group'>
-												        <input type='checkbox' id='checkAll' class='check-box-element'>
-												        </fieldset>" class="center select-cell"
-                                                        headerClass="center select-cell">
-                                            <fieldset>
-                                                <input type="checkbox" name="checkList" value="${tableList.id}"
-                                                       id="checkbox_${tableList.id}" class="check-box-element"/>
-                                            </fieldset>
-                                        </display:column>
-                                        <display:column headerClass="text-left" property="userName" title="Tên"/>
-                                        <display:column headerClass="text-left" property="fullName" title="full name"/>
-                                        <display:column headerClass="col-actions" title="Thao tác">
-                                            <c:if test="${tableList.roleCode != 'MANAGER'}">
-                                                <a class="btn btn-sm btn-primary btn-edit" data-toggle="tooltip"
-                                                   title="Cập nhật người dùng"
-                                                   href='<c:url value="/admin/user-edit-${tableList.id}"/>'>
-                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                </a>
-                                            </c:if>
-                                            <c:if test="${tableList.roleCode == 'MANAGER'}">
-                                                <p>Không đươc thao tác</p>
-                                            </c:if>
-                                        </display:column>
-                                    </display:table>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+
+                </form:form>
+
             </div>
         </div>
-    </form:form>
+    </div>
 </div>
+
+
+<!-- ============================================================== -->
+<!-- End Container fluid -->
+<!-- ============================================================== -->
+
+<!-- ============================================================== -->
+<!-- All Jquery -->
+
+<div class="modal fade" id="assignmentBuildingModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel1">Thêm nhân viên quản lý cho tòa nhà</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">Nhân viên:</label>
+                    <select name="staffId" class="form-contưrol custom-select"
+                            data-placeholder="Choose a Category" tabindex="1">
+                        <option value="Category 1">-- Chọn Nhân viên --</option>
+                        <option value="Category 2">Nguyễn Văn Trọng</option>
+                        <option value="Category 3">Nguyễn Tiến Duy</option>
+                        <option value="Category 4">Nguyễn Trung Đức</option>
+                    </select>
+                </div>
+                <input type="hidden" id="buildingId" value="1">
+                <table class="table " id="staffList">
+                    <thead class="bg-success text-white align-items-center">
+                    <tr class="text-center">
+
+                        <th>Chọn</th>
+                        <th>Tên Nhân Viên</th>
+
+                    </tr>
+                    </thead>
+                    <tbody class="border border-success text-center">
+
+                    </tbody>
+                </table>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="btnAssignmentBuilding" type="button" class="btn btn-primary">Thêm</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -201,6 +270,3 @@
         });
     }
 </script>
-</body>
-
-</html>

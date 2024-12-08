@@ -42,7 +42,7 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-5 align-self-center">
-                <h4 class="page-title">Dashboard</h4>
+                <h4 class="page-title">Building Action</h4>
             </div>
             <div class="col-7 align-self-center">
                 <div class="d-flex align-items-center justify-content-end">
@@ -51,7 +51,7 @@
                             <li class="breadcrumb-item">
                                 <a href="#">Home</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                            <li class="breadcrumb-item active" aria-current="page">Building Action</li>
                         </ol>
                     </nav>
                 </div>
@@ -469,12 +469,6 @@
                                         </c:if>
 
                                         <button id="btnCancel" type="button" class="  btn btn-info ms-auto"
-                                                style="margin-left: 5px">
-                                            <i class="mdi mdi-backspace"></i>
-                                            Hủy thao tác
-                                        </button>
-
-                                        <button id="" type="submit" class="  btn btn-info ms-auto"
                                                 style="margin-left: 5px">
                                             <i class="mdi mdi-backspace"></i>
                                             Hủy thao tác

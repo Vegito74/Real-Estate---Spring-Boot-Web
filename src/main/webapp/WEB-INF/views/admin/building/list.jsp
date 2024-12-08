@@ -11,271 +11,250 @@
 <c:url var="buildingAPI" value="/api/building"/>
 
 
-
+<!-- Page wrapper -->
 <!-- ============================================================== -->
-<!-- Preloader - style you can find in spinners.css -->
-<!-- ============================================================== -->
-
-<!-- ============================================================== -->
-<!-- Main wrapper - style you can find in pages.scss -->
-<!-- ============================================================== -->
-
+<div class="page-wrapper">
     <!-- ============================================================== -->
-    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- Bread crumb and right sidebar toggle -->
     <!-- ============================================================== -->
-
-    <!-- ============================================================== -->
-    <!-- End Topbar header -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Left Sidebar - style you can find in sidebar.scss  -->
-    <!-- ============================================================== -->
-
-    <!-- ============================================================== -->
-    <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Page wrapper  -->
-    <!-- ============================================================== -->
-    <div class="page-wrapper">
-        <!-- ============================================================== -->
-        <!-- Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
-        <div class="page-breadcrumb">
-            <div class="row">
-                <div class="col-5 align-self-center">
-                    <h4 class="page-title">Quản lý Building</h4>
-                </div>
-                <div class="col-7 align-self-center">
-                    <div class="d-flex align-items-center justify-content-end">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="#">Home</a>
-                                </li>
-                                <li class="breadcrumb-item active" aria-current="page">Quản lý Building</li>
-                            </ol>
-                        </nav>
-                    </div>
+    <div class="page-breadcrumb">
+        <div class="row">
+            <div class="col-5 align-self-center">
+                <h4 class="page-title">Quản lý Building</h4>
+            </div>
+            <div class="col-7 align-self-center">
+                <div class="d-flex align-items-center justify-content-end">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="#">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Quản lý Building</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Container fluid  -->
-        <!-- ============================================================== -->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header bg-primary">
-                            <h4 class="m-b-0 text-white">Danh mục tìm kiếm</h4>
-                        </div>
-                        <form:form modelAttribute="modelSearch"  id="listFrom" action="${buildingListURL}" method="GET">
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Container fluid  -->
+    <!-- ============================================================== -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-primary">
+                        <h4 class="m-b-0 text-white">Danh mục tìm kiếm</h4>
+                    </div>
+                    <form:form modelAttribute="modelSearch" id="listFrom" action="${buildingListURL}" method="GET">
 
-                            <div class="form-body" style="font-size: small">
-                                <div class="card-body">
-                                    <div class="row ">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label"> Tên tòa nhà</label>
-                                                        <form:input path="name" type="text" id="name" name="name" class="form-control"/>
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-                                        <div class="col-md-6">
-                                            <div class="form-group has-danger">
-                                                <label class="control-label">Diện tích sàn</label>
-                                                <form:input type="number" id="floorArea" name="floorArea"
-                                                       class="form-control form-control-danger" path="floorArea"/>
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-                                    </div>
-                                    <!--/row-->
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <div class="form-group has-danger">
-                                                <label class="control-label">Quận hiện có</label>
-                                                <form:select path="district" id="districtId" name="districtCode"
-                                                        class="form-control custom-select"
-                                                        data-placeholder="Choose a Category" tabindex="1">
-                                                    <form:option value="">-- Chọn Quận --</form:option>
-                                                    <form:options items="${districts}"/>
-                                                </form:select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="form-group has-danger">
-                                                <label class="control-label">Phường</label>
-                                                <form:input type="text" id="ward" name="ward"
-                                                       class="form-control form-control-danger" path="ward"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <div class="form-group has-danger">
-                                                <label class="control-label">Đường</label>
-                                                <form:input type="text" id="street" name="street"
-                                                       class="form-control form-control-danger" path="street"/>
-                                            </div>
+                        <div class="form-body" style="font-size: small">
+                            <div class="card-body">
+                                <div class="row ">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label"> Tên tòa nhà</label>
+                                            <form:input path="name" type="text" id="name" name="name"
+                                                        class="form-control"/>
                                         </div>
                                     </div>
-                                    <!--/row-->
-                                    <!--/row-->
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group has-danger">
-                                                <label class="control-label">Số tầng hầm</label>
-                                                <form:input type="number" id="numberOfBasement" name="numberOfBasement"
-                                                       class="form-control form-control-danger" path="numberOfBasement"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group has-danger">
-                                                <label class="control-label">Hướng</label>
-                                                <form:input type="text" id="direction" name="direction"
-                                                       class="form-control form-control-danger" path="direction"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group has-danger">
-                                                <label class="control-label">Hạng</label>
-                                                <form:input type="number" id="level" name="level"
-                                                       class="form-control form-control-danger" path="level"/>
-                                            </div>
+                                    <!--/span-->
+                                    <div class="col-md-6">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">Diện tích sàn</label>
+                                            <form:input type="number" id="floorArea" name="floorArea"
+                                                        class="form-control form-control-danger" path="floorArea"/>
                                         </div>
                                     </div>
-                                    <!--/row-->
-                                    <!--/row-->
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <div class="form-group has-danger">
-                                                <label class="control-label">Diện tích từ</label>
-                                                <form:input type="number" id="areaFrom" name="areaFrom"
-                                                       class="form-control form-control-danger" path="areaFrom"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group has-danger">
-                                                <label class="control-label">Diện tích đến</label>
-                                                <form:input type="number" id="areaTo" name="areaTo"
-                                                       class="form-control form-control-danger" path="areaTo"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group has-danger">
-                                                <label class="control-label">Giá thuê từ</label>
-                                                <form:input type="number" id="rentPriceFrom" name="rentPriceFrom"
-                                                       class="form-control form-control-danger" path="rentPriceFrom"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group has-danger">
-                                                <label class="control-label">Giá thuê đến</label>
-                                                <form:input type="number" id="rentPriceTo" name="rentPriceTo"
-                                                       class="form-control form-control-danger" path="rentPriceTo"/>
-                                            </div>
+                                    <!--/span-->
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">Quận hiện có</label>
+                                            <form:select path="district" id="districtId" name="districtCode"
+                                                         class="form-control custom-select"
+                                                         data-placeholder="Choose a Category" tabindex="1">
+                                                <form:option value="">-- Chọn Quận --</form:option>
+                                                <form:options items="${districts}"/>
+                                            </form:select>
                                         </div>
                                     </div>
-                                    <!--/row-->
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group has-danger">
-                                                <label class="control-label">Tên quản lý</label>
-                                                <form:input type="number" id="managerName" name="managerName"
-                                                       class="form-control form-control-danger" path="managerName"/>
-                                            </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">Phường</label>
+                                            <form:input type="text" id="ward" name="ward"
+                                                        class="form-control form-control-danger" path="ward"/>
                                         </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group has-danger">
-                                                <label class="control-label">SĐT quản lý</label>
-                                                <form:input type="number" id="managerPhone" name="managerPhone"
-                                                       class="form-control form-control-danger" path="managerPhone"/>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-3">
-                                            <div class="form-group">
-                                                <label class="control-label">Nhân viên</label>
-                                                <form:select path="staffId" class="form-control custom-select"
-                                                        data-placeholder="Choose a Category" tabindex="1">
-                                                    <option value="">--Chọn Nhân Viên--</option>
-                                                    <form:options items="${listStaff}"/>
-
-                                                </form:select>
-                                            </div>
-                                        </div>
-                                        <!--/span-->
-
                                     </div>
-                                    <!--/row-->
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label
-                                                        class="control-label custom-cursor-default-hover">Kiểu tòa nhà</label>
-                                                <fieldset class="checkbox">
-                                                   <form:checkboxes items="${types}" path="typeCode"/>
-                                                </fieldset>
-                                            </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">Đường</label>
+                                            <form:input type="text" id="street" name="street"
+                                                        class="form-control form-control-danger" path="street"/>
                                         </div>
-                                        <!--/span-->
-                                    </div>
-                                    <div class="row d-flex justify-content-center">
-
-                                        <button id="btnSearchBuilding" type="button"
-                                                class="btn btn-success ms-auto">
-                                            <i class="fas fa-search"></i>
-                                            Tìm kiếm
-                                        </button>
-
-
                                     </div>
                                 </div>
+                                <!--/row-->
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">Số tầng hầm</label>
+                                            <form:input type="number" id="numberOfBasement" name="numberOfBasement"
+                                                        class="form-control form-control-danger"
+                                                        path="numberOfBasement"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">Hướng</label>
+                                            <form:input type="text" id="direction" name="direction"
+                                                        class="form-control form-control-danger" path="direction"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">Hạng</label>
+                                            <form:input type="number" id="level" name="level"
+                                                        class="form-control form-control-danger" path="level"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/row-->
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">Diện tích từ</label>
+                                            <form:input type="number" id="areaFrom" name="areaFrom"
+                                                        class="form-control form-control-danger" path="areaFrom"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">Diện tích đến</label>
+                                            <form:input type="number" id="areaTo" name="areaTo"
+                                                        class="form-control form-control-danger" path="areaTo"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">Giá thuê từ</label>
+                                            <form:input type="number" id="rentPriceFrom" name="rentPriceFrom"
+                                                        class="form-control form-control-danger" path="rentPriceFrom"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">Giá thuê đến</label>
+                                            <form:input type="number" id="rentPriceTo" name="rentPriceTo"
+                                                        class="form-control form-control-danger" path="rentPriceTo"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">Tên quản lý</label>
+                                            <form:input type="number" id="managerName" name="managerName"
+                                                        class="form-control form-control-danger" path="managerName"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group has-danger">
+                                            <label class="control-label">SĐT quản lý</label>
+                                            <form:input type="number" id="managerPhone" name="managerPhone"
+                                                        class="form-control form-control-danger" path="managerPhone"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="control-label">Nhân viên</label>
+                                            <form:select path="staffId" class="form-control custom-select"
+                                                         data-placeholder="Choose a Category" tabindex="1">
+                                                <option value="">--Chọn Nhân Viên--</option>
+                                                <form:options items="${listStaff}"/>
+
+                                            </form:select>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+
+                                </div>
+                                <!--/row-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label
+                                                    class="control-label custom-cursor-default-hover">Kiểu tòa
+                                                nhà</label>
+                                            <fieldset class="checkbox">
+                                                <form:checkboxes items="${types}" path="typeCode"/>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <!--/span-->
+                                </div>
+                                <div class="row d-flex justify-content-center">
+
+                                    <button id="btnSearchBuilding" type="button"
+                                            class="btn btn-success ms-auto">
+                                        <i class="fas fa-search"></i>
+                                        Tìm kiếm
+                                    </button>
 
 
-
+                                </div>
                             </div>
-                        </form:form>
 
-                    </div>
-                    <!-- Multiple table control element -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
+
+                        </div>
+                    </form:form>
+
+                </div>
+                <!-- Multiple table control element -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
                                 <div class="row">
                                     <h4 class="card-title col-lg-6">Danh sách Building</h4>
                                     <div class="col-lg-6 d-flex justify-content-end">
-                                    <a type="button" class="btn btn-primary" id="addBuilding" href="/admin/building-edit"><i class="fa fa-building"></i> Add New</a>
-    </div>
-    </div>
-                                    <h6 class="card-subtitle">Bảng danh sách thông tin chính của các tòa nhà hiện có
-                                    </h6>
-                                    <div class="table-responsive" style="font-family:'Times New Roman'">
-                                        <table id="multi_control" class="table table-striped table-bordered display"
-                                               style="width:100%">
-                                            <thead style="font-size: medium">
-                                            <tr role="row" >
-                                                <th>Tên tòa nhà</th>
-                                                <th>Địa chỉ</th>
-                                                <th>Số tầng hầm</th>
-                                                <th>Tên quản lý</th>
-                                                <th>Số điện thoại</th>
-                                                <th>DT sàn</th>
-                                                <th>DT thuê</th>
-                                                <th>DT trống</th>
-                                                <th>Giá thuê</th>
-                                                <th>Phí môi giới</th>
-                                                <th>Phí dịch vụ</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody style="font-size: smaller">
-                                            <c:forEach var="item" items="${buildingSearchResponses}">
-                                             <tr id="row_${item.id}">
+                                        <a type="button" class="btn btn-primary" id="addBuilding"
+                                           href="/admin/building-edit"><i class="fa fa-building"></i> Add New</a>
+                                    </div>
+                                </div>
+                                <h6 class="card-subtitle">Bảng danh sách thông tin chính của các tòa nhà hiện có
+                                </h6>
+                                <div class="table-responsive" style="font-family:'Times New Roman'">
+                                    <table id="multi_control" class="table table-striped table-bordered display"
+                                           style="width:100%">
+                                        <thead style="font-size: medium">
+                                        <tr role="row">
+                                            <th>Tên tòa nhà</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Số tầng hầm</th>
+                                            <th>Tên quản lý</th>
+                                            <th>Số điện thoại</th>
+                                            <th>DT sàn</th>
+                                            <th>DT thuê</th>
+                                            <th>DT trống</th>
+                                            <th>Giá thuê</th>
+                                            <th>Phí môi giới</th>
+                                            <th>Phí dịch vụ</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody style="font-size: smaller">
+                                        <c:forEach var="item" items="${buildingSearchResponses}">
+                                            <tr id="row_${item.id}">
                                                 <td>${item.name}</td>
                                                 <td>${item.address}</td>
                                                 <td>${item.numberOfBasement}</td>
@@ -299,8 +278,9 @@
                                                         <div class="dropdown-menu ">
                                                             <a class="dropdown-item"
                                                                href="/admin/building-edit-${item.id}">Edit</a>
-                                                            <a id="" onclick="deleteBuilding(${item.id})" class="dropdown-item "
-                                                               >Delete</a>
+                                                            <a id="" onclick="deleteBuilding(${item.id})"
+                                                               class="dropdown-item "
+                                                            >Delete</a>
                                                             <div class="dropdown-divider"></div>
                                                             <a type="button" class="dropdown-item btn  "
                                                                data-toggle="modal"
@@ -315,46 +295,46 @@
                                                 </td>
 
                                             </tr>
-                                                </c:forEach>
+                                        </c:forEach>
 
 
-                                            </tbody>
-                                            <tfoot>
-                                            <tr>
+                                        </tbody>
+                                        <tfoot>
+                                        <tr>
 
-                                                 <th>Tên tòa nhà</th>
-                                                <th>Địa chỉ</th>
-                                                <th>Số tầng hầm</th>
-                                                <th>Tên quản lý</th>
-                                                <th>Số điện thoại</th>
-                                                <th>DT sàn</th>
-                                                <th>DT thuê</th>
-                                                <th>DT trống</th>
-                                                <th>Giá thuê</th>
-                                                <th>Phí môi giới</th>
-                                                <th>Phí dịch vụ</th>
-                                                <th>Action</th>
-                                            </tr>
-                                            </tfoot>
+                                            <th>Tên tòa nhà</th>
+                                            <th>Địa chỉ</th>
+                                            <th>Số tầng hầm</th>
+                                            <th>Tên quản lý</th>
+                                            <th>Số điện thoại</th>
+                                            <th>DT sàn</th>
+                                            <th>DT thuê</th>
+                                            <th>DT trống</th>
+                                            <th>Giá thuê</th>
+                                            <th>Phí môi giới</th>
+                                            <th>Phí dịch vụ</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </tfoot>
 
-                                        </table>
+                                    </table>
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
+
+
             </div>
         </div>
-
     </div>
+
+</div>
 
 
 <!-- ============================================================== -->
-<!-- End Container fluid  -->
+<!-- End Container fluid -->
 <!-- ============================================================== -->
 
 <!-- ============================================================== -->
@@ -370,34 +350,34 @@
             </div>
             <div class="modal-body">
 
-                    <div class="form-group">
-                        <label for="recipient-name" class="control-label">Nhân viên:</label>
-                        <select name="staffId" class="form-contưrol custom-select"
-                                data-placeholder="Choose a Category" tabindex="1">
-                            <option value="Category 1">-- Chọn Nhân viên --</option>
-                            <option value="Category 2">Nguyễn Văn Trọng</option>
-                            <option value="Category 3">Nguyễn Tiến Duy</option>
-                            <option value="Category 4">Nguyễn Trung Đức</option>
-                        </select>
-                    </div>
-                    <input type="hidden" id="buildingId"  value="1">
-                    <table class="table " id="staffList">
-                        <thead class="bg-success text-white align-items-center">
-                        <tr class="text-center">
+                <div class="form-group">
+                    <label for="recipient-name" class="control-label">Nhân viên:</label>
+                    <select name="staffId" class="form-contưrol custom-select"
+                            data-placeholder="Choose a Category" tabindex="1">
+                        <option value="Category 1">-- Chọn Nhân viên --</option>
+                        <option value="Category 2">Nguyễn Văn Trọng</option>
+                        <option value="Category 3">Nguyễn Tiến Duy</option>
+                        <option value="Category 4">Nguyễn Trung Đức</option>
+                    </select>
+                </div>
+                <input type="hidden" id="buildingId" value="1">
+                <table class="table " id="staffList">
+                    <thead class="bg-success text-white align-items-center">
+                    <tr class="text-center">
 
-                            <th>Chọn</th>
-                            <th>Tên Nhân Viên</th>
+                        <th>Chọn</th>
+                        <th>Tên Nhân Viên</th>
 
-                        </tr>
-                        </thead>
-                        <tbody class="border border-success text-center">
+                    </tr>
+                    </thead>
+                    <tbody class="border border-success text-center">
 
-                        </tbody>
-                    </table>
-                    <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button id="btnAssignmentBuilding" type="button" class="btn btn-primary">Thêm</button>
-            </div>
+                    </tbody>
+                </table>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="btnAssignmentBuilding" type="button" class="btn btn-primary">Thêm</button>
+                </div>
 
             </div>
 
@@ -415,18 +395,18 @@
     }
 
     // load danh sách nhân viên
-    function loadStaff(buildingId){
+    function loadStaff(buildingId) {
         $.ajax({
             type: "GET",
-            url: "/api/building/" + buildingId +"/staffs",
+            url: "/api/building/" + buildingId + "/staffs",
             //data: JSON.stringify(buildingId),
             //contentType: "application/JSON",
             dataType: "JSON",
             success: function (response) {
                 var row = '';
-                $.each(response.data, function (index, item){
+                $.each(response.data, function (index, item) {
                     row += '<tr>';
-                    row += '<td class="text-center"><input type="checkbox" value='+item.staffId +' id="checkbox_'+ item.staffId+ '" ' + item.checked +'></td>';
+                    row += '<td class="text-center"><input type="checkbox" value=' + item.staffId + ' id="checkbox_' + item.staffId + '" ' + item.checked + '></td>';
                     row += '<td class ="text-center">' + item.fullName + '</td>';
                     row += '</tr>';
                 });
@@ -436,7 +416,7 @@
             error: function (response) {
                 console.log("Failed!");
                 window.location.href = '<c:url value="/admin/building-view?message=error"/>';
-                console.log(response );
+                console.log(response);
             }
 
         });
@@ -451,15 +431,15 @@
             return $(this).val();
         }).get();
         data['staffs'] = staffs;
-        if (data['staffs'] != ''){
+        if (data['staffs'] != '') {
             assignment(data);
         }
         console.log("OK");
     });
 
     // ajax call api Giao toà nhà cho nhân viên
-    function assignment(data){
-     $.ajax({
+    function assignment(data) {
+        $.ajax({
             type: "PUT",
             url: "${buildingAPI}/assignment",
             data: JSON.stringify(data),
@@ -482,25 +462,25 @@
         $('#listFrom').submit();
     });
 
-      function deleteBuilding(id) {
+    function deleteBuilding(id) {
 
-          var buildingId = [id];
-          var row = $("#row_"+id);
-          deleteBuildings(buildingId, row);
+        var buildingId = [id];
+        var row = $("#row_" + id);
+        deleteBuildings(buildingId, row);
     }
 
     function deleteBuildings(buildingId, row) {//Xóa tòa nhà
         $.ajax({
             type: "DELETE",
-            url: "${buildingAPI}/" + buildingId ,
+            url: "${buildingAPI}/" + buildingId,
             data: JSON.stringify(buildingId),
             contentType: "application/JSON",
             dataType: "JSON",
 
             success: function (respond) {
                 console.log("Success!");
-                 $('#multi_control').DataTable().row(row).remove().draw();
-                   toastr.success('Xóa tòa nhà thành công!', 'Success');
+                $('#multi_control').DataTable().row(row).remove().draw();
+                toastr.success('Xóa tòa nhà thành công!', 'Success');
             },
             error: function (respond) {
                 console.log("Failed!");

@@ -14,7 +14,7 @@
             <!-- Logo -->
             <!-- ============================================================== -->
             <div class="navbar-brand">
-                <a href="index.html" class="logo">
+                <a href="/admin/home" class="logo">
                     <!-- Logo icon -->
                     <b class="logo-icon">
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -59,6 +59,19 @@
             <!-- toggle and nav items -->
             <!-- ============================================================== -->
             <ul class="navbar-nav float-left mr-auto">
+                <!-- Search -->
+                <!-- ============================================================== -->
+                <li class="nav-item search-box">
+                    <a class="nav-link waves-effect waves-dark" href="/trang-chu">
+                        <div class="d-flex align-items-center">
+                            <i class=" fas fa-home font-20 mr-1"></i>
+                            <div class="ml-1 d-none d-sm-block">
+                                <span>Trang chủ</span>
+                            </div>
+                        </div>
+                    </a>
+
+                </li>
             </ul>
             <!-- ============================================================== -->
             <!-- Right side toggle and nav items -->
@@ -131,8 +144,8 @@
                                      width="60">
                             </div>
                             <div class="m-l-10">
-                                <h4 class="mb-0">Jonathan Doe</h4>
-                                <p class=" mb-0">jon@gmail.com</p>
+                                <h4 class="mb-0"><%=SecurityUtils.getPrincipal().getFullName()%> </h4>
+                                <p class=" mb-0">lvthongsoai74@gmail.com</p>
                             </div>
                         </div>
                         <a class="dropdown-item" href="/admin/profile-<%=SecurityUtils.getPrincipal().getUsername()%>">

@@ -2,7 +2,10 @@
 <%@include file="/common/taglib.jsp" %>
 <html>
 <head>
-
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
 	<!-- Favicon icon -->
 	<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
 	<title>Edit Building</title>
@@ -16,7 +19,14 @@
 		  rel="stylesheet">
 	<link href="dist/css/style.min.css" rel="stylesheet">
 	<link href="assets/libs/toastr/build/toastr.min.css" rel="stylesheet">
+	<!-- Custom CSS -->
+	<link href="assets/libs/morris.js/morris.css" rel="stylesheet">
+	<link href="assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
+	<link href="assets/extra-libs/c3/c3.min.css" rel="stylesheet">
+	<!-- Custom CSS -->
+	<link href="dist/css/style.min.css" rel="stylesheet">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
 
@@ -79,6 +89,18 @@
 	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
 	<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
 	<script src="dist/js/pages/datatable/datatable-advanced.init.js"></script>
+<!--chartis chart-->
+<script src="assets/libs/chartist/dist/chartist.min.js"></script>
+<script src="assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+<!--c3 charts -->
+<script src="assets/extra-libs/c3/d3.min.js"></script>
+<script src="assets/extra-libs/c3/c3.min.js"></script>
+<script src="dist/js/pages/dashboards/dashboard3.js"></script>
+
+<!-- chartjs -->
+<script src="assets/libs/raphael/raphael.min.js"></script>
+<script src="assets/libs/morris.js/morris.min.js"></script>
+
 
 </body>
 </html>

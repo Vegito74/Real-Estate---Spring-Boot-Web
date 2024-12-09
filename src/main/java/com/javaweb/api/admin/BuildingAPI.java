@@ -18,8 +18,7 @@ public class BuildingAPI {
     @Autowired
     private BuildingService buildingService;
 
-    @Autowired
-    private AssignmentBuildingService assignmentBuildingService;
+
     @PostMapping
     public ResponseEntity<BuildingDTO> addOrUpdateBuilding(@RequestBody BuildingDTO  buildingDTO) {
 
@@ -28,7 +27,6 @@ public class BuildingAPI {
 
     @DeleteMapping("/{ids}")
     public boolean deleteBuilding(@PathVariable List<Long> ids) {
-        //Xuống DB
        buildingService.deleteBuilding(ids);
        return true;
     }
@@ -42,7 +40,6 @@ public class BuildingAPI {
     @PutMapping("/assignment")
     public boolean updateAssignmentBuilding(@RequestBody AssignmentBuildingDTO assignmentBuildingDTO) {
         buildingService.addAssignmentBuildingEntity(assignmentBuildingDTO);
-        //assignmentBuildingService.addAssigmentBuilding(assignmentBuildingDTO); ver--1
         return true;
     }
 }

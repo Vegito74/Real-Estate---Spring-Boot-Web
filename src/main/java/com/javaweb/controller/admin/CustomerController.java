@@ -26,7 +26,7 @@ public class CustomerController {
         List<CustomerDTO> customerDTOList = new ArrayList<>();
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setId(1L);
-        customerDTO.setName("Nguyễn Văn Trọng");
+        customerDTO.setFullName("Nguyễn Văn Trọng");
         customerDTO.setEmail("nguy@gmail.com");
         customerDTO.setDemand("");
         customerDTOList.add(customerDTO);

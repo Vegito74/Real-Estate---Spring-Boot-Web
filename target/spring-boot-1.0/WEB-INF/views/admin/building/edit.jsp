@@ -503,9 +503,6 @@
         var data = {};
         var typeCode = [];
         var formData = $('#form-edit').serializeArray();
-
-
-
         $.each(formData, function (index, value) {
             if (value.name != 'typeCode') {
                 data["" + value.name + ""] = value.value;

@@ -392,6 +392,7 @@
         $('#assignmentBuildingModal').modal();
         $('#buildingId').val(buildingId);//set giá trị cho input hidden của danh sách giao nhân viên
         loadStaff(buildingId);
+
     }
 
     // load danh sách nhân viên

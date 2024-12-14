@@ -25,6 +25,7 @@
 	<link href="assets/extra-libs/c3/c3.min.css" rel="stylesheet">
 	<!-- Custom CSS -->
 	<link href="dist/css/style.min.css" rel="stylesheet">
+	<link href="assets/libs/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -66,6 +67,8 @@
 	<script src="dist/js/custom.js"></script>
 	<script src="assets/libs/toastr/build/toastr.min.js"></script>
 <script src="assets/extra-libs/toastr/toastr-init.js"></script>
+    <script src="assets/libs/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="assets/libs/sweetalert2/sweet-alert.init.js"></script>
 	<!--This page plugins -->
 		<dec:body/>
 
@@ -100,6 +103,8 @@
 <!-- chartjs -->
 <script src="assets/libs/raphael/raphael.min.js"></script>
 <script src="assets/libs/morris.js/morris.min.js"></script>
+
+
 
 
 </body>

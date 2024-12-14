@@ -6,6 +6,16 @@ import javax.persistence.*;
 public class RentAreaEntity extends BaseEntity{
     @Column(name = "value")
     private Long value;
+    @Column(name = "status")
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     @ManyToOne
     @JoinColumn(name = "buildingid", referencedColumnName = "id")

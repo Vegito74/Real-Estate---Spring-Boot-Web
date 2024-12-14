@@ -24,15 +24,15 @@
 	<link rel="stylesheet" href="web/css/tiny-slider.css" />
 	<link rel="stylesheet" href="web/css/aos.css" />
 	<link rel="stylesheet" href="web/css/style.css" />
-	<link href="admin/assets/libs/toastr/build/toastr.min.css" rel="stylesheet">
+	<link  href="web/toastr/build/toastr.min.css" rel="stylesheet">
 	<title>
 		Property
 	</title>
 </head>
 <body>
-<script src="login/assets/libs/jquery/dist/jquery.min.js"></script>
-<script src="admin/assets/libs/toastr/build/toastr.min.js"></script>
-<script src="admin/assets/extra-libs/toastr/toastr-init.js"></script>
+<script src="web/dist/jquery.min.js"></script>
+<script src="web/toastr/build/toastr.min.js"></script>
+<script src="web/toastr/toastr-init.js"></script>
 	<!-- Navigation -->
 	<%@ include file="/common/web/header.jsp" %>
 

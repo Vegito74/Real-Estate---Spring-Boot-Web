@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum TransactionType {
-    CHUA_XU_LY ("Chưa xử lý!"),
-    DANG_XU_LY ("Đang xử lý"),
-    DA_XU_LY ("Đã xử lý!"),;
+    CSKH ("Chăm sóc khách hàng"),
+    GDTT ("Giao dịch trực tiếp"),
+    ;
 
     private final String typeName;
 

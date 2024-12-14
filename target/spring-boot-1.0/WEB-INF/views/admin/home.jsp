@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -128,8 +129,12 @@
                         </div>
                         <div class="sales5 ct-charts m-t-30"></div>
                         <ul class="list-inline m-t-30 text-center font-12">
-                            <li class="list-inline-item text-muted"><i class="fa fa-circle text-info m-r-5"></i> Số lượng giao dịch</li>
-                            <li class="list-inline-item text-muted"><i class="fa fa-circle text-success m-r-5"></i> MaterialPro Admin</li>
+                            <li class="list-inline-item text-muted"><i class="fa fa-circle text-info m-r-5"></i> Số
+                                lượng giao dịch
+                            </li>
+                            <li class="list-inline-item text-muted"><i class="fa fa-circle text-success m-r-5"></i>
+                                MaterialPro Admin
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -140,12 +145,13 @@
                         <h4 class="card-title text-white">Thursday
                             <span class="font-14 font-normal text-white op-5">
                                 <script>
-						            document.write(new Date().getFullYear()+'-'+(new Date().getMonth()+1)+'-'+  new Date().getDate());
+						            document.write(new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate());
 					             </script>
                             </span>
                         </h4>
                         <div class="d-flex align-items-center flex-row m-t-30">
-                            <h1 class="font-light text-white"><i class="wi wi-day-sleet"></i> <span>35<sup>°</sup></span></h1>
+                            <h1 class="font-light text-white"><i class="wi wi-day-sleet"></i>
+                                <span>35<sup>°</sup></span></h1>
                         </div>
                     </div>
                     <div class="weather-report" style="height:78px; width:100%;"></div>
@@ -165,21 +171,26 @@
                                 <li>
                                     <div class="d-flex align-items-center">
                                         <div>
-                                            <h4 class="mb-0 font-medium text-white">24% <span class="font-normal font-14 text-white op-5 m-l-5">Manager</span></h4>
+                                            <h4 class="mb-0 font-medium text-white">24% <span
+                                                    class="font-normal font-14 text-white op-5 m-l-5">Manager</span>
+                                            </h4>
                                         </div>
                                     </div>
                                     <div class="progress m-t-10 user-progress-bg">
-                                        <div class="progress-bar bg-white" role="progressbar" style="width: 24%" aria-valuenow="58" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-white" role="progressbar" style="width: 24%"
+                                             aria-valuenow="58" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </li>
                                 <li class="m-t-30">
                                     <div class="d-flex align-items-center">
                                         <div>
-                                            <h4 class="mb-0 font-medium text-white">76% <span class="font-normal font-14 text-white op-5 m-l-5">Staff</span></h4>
+                                            <h4 class="mb-0 font-medium text-white">76% <span
+                                                    class="font-normal font-14 text-white op-5 m-l-5">Staff</span></h4>
                                         </div>
                                     </div>
                                     <div class="progress m-t-10 user-progress-bg">
-                                        <div class="progress-bar bg-white" role="progressbar" style="width: 76%" aria-valuenow="16" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar bg-white" role="progressbar" style="width: 76%"
+                                             aria-valuenow="16" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </li>
                             </ul>
@@ -203,12 +214,9 @@
                                     <select class="custom-select border-0 text-muted">
                                         <option value="0" selected="">
                                             <script>
-                                                document.write(new Date().getFullYear()+'-'+(new Date().getMonth()+1));
+                                                document.write(new Date().getFullYear() + '-' + (new Date().getMonth() + 1));
                                             </script>
                                         </option>
-                                        <option value="1">May 2018</option>
-                                        <option value="2">March 2018</option>
-                                        <option value="3">June 2018</option>
                                     </select>
                                 </div>
                             </div>
@@ -218,55 +226,41 @@
                                 <thead>
                                 <tr style="font-size: small">
                                     <th class="border-0 text-muted">Customer</th>
-                                    <th class="border-0 text-muted">Building</th>
-                                    <th class="border-0 text-muted">Implementers</th>
                                     <th class="border-0 text-muted text-center">Status</th>
                                     <th class="border-0 text-muted text-center">Request date</th>
-                                    <th class="border-0 text-muted text-center">Note</th>
+                                    <th class="border-0 text-muted text-center">Demand</th>
+                                    <th class="border-0 text-muted text-center">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex no-block align-items-center">
-                                            <div class="m-r-10" style="margin-right: 10px"><img src="assets/images/users/d2.jpg" alt="user" class="rounded-circle" width="45" /></div>
-                                            <div class="">
-                                                <h5 class="m-b-0 font-16 font-medium" style="margin-bottom: 0" >Nguyễn Tiến Duy</h5><span class="text-muted" style="font-size: small; margin-bottom: 0">lvthongsoai74@gmail.com</span></div>
-                                        </div>
-                                    </td>
-                                    <td>WinterHold Building</td>
-                                    <td>
-                                        <div class="popover-icon">
-                                            <a class="btn-circle btn btn-info" href="javascript:void(0)">SS</a>
-                                            <a class="btn-circle btn btn-purple text-white popover-item" href="javascript:void(0)">DS</a>
-                                            <a class="btn-circle btn btn-danger text-white popover-item" href="javascript:void(0)">RP</a>
-                                            <a class="btn-circle btn btn-outline-secondary" href="javascript:void(0)">+</a>
-                                        </div>
-                                    </td>
-                                    <td class="text-center"><i class="fa fa-circle text-danger" data-toggle="tooltip" data-placement="top" title="In Progress"></i></td>
-                                    <td class="text-center">2024-12-01</td>
-                                    <td class="font-medium text-center">Cần tư vấn tòa EAUT Building</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex no-block align-items-center">
-                                            <div class="m-r-10"><img src="assets/images/users/d1.jpg" alt="user" class="rounded-circle" width="45" /></div>
-                                            <div class="">
-                                                <h5 class="m-b-0 font-16 font-medium">Nguyễn Thị Thúy</h5><span class="text-muted">Kristeen@gmail.com</span></div>
-                                        </div>
-                                    </td>
-                                    <td></td>
-                                    <td>
-                                        <div class="popover-icon">
-                                            <a class="btn-circle btn btn-info" href="javascript:void(0)">SS</a>
-                                            <a class="btn-circle btn btn-primary text-white popover-item" href="javascript:void(0)">DS</a>
-                                            <a class="btn-circle btn btn-outline-secondary" href="javascript:void(0)">+</a>
-                                        </div>
-                                    </td>
-                                    <td class="text-center"><i class="fa fa-circle text-success" data-toggle="tooltip" data-placement="top" title="Active"></i></td>
-                                    <td class="text-center">2024-12-01</td>
-                                    <td class="font-medium text-center">Yêu cầu tư liên hệ tư vấn</td>
-                                </tr>
+                                <c:forEach var="item" items="${customers}">
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex no-block align-items-center">
+                                                <div class="m-r-10" style="margin-right: 10px"><img
+                                                        src="assets/images/users/d2.jpg" alt="user"
+                                                        class="rounded-circle" width="45"/></div>
+                                                <div class="">
+                                                    <h5 class="m-b-0 font-16 font-medium" style="margin-bottom: 0">
+                                                        ${item.fullName}</h5><span class="text-muted"
+                                                                                  style="font-size: small; margin-bottom: 0">${item.email}</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-center"><i class="fa fa-circle text-success"
+                                                                   data-toggle="tooltip" data-placement="top"
+                                                                   title="Chưa xử lý!"></i></td>
+
+                                        <td class="text-center">${item.createdDate}</td>
+                                        <td class="font-14 text-center" style="word-wrap: break-word; white-space: normal;" >${item.demand}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-secondary waves-effect waves-light" type="button">
+                                                 <span class="btn-label"><i class="fas fa-edit"></i></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                </c:forEach>
 
                                 </tbody>
                             </table>

@@ -63,8 +63,8 @@
                 <!-- ============================================================== -->
                 <li class="nav-item search-box">
                     <a class="nav-link waves-effect waves-dark" href="/trang-chu">
-                        <div class="d-flex align-items-center">
-                            <i class=" fas fa-home font-20 mr-1"></i>
+                        <div class="d-flex align-items-center" style="color: black">
+                            <i class=" fas fa-home font-20 mr-1" ></i>
                             <div class="ml-1 d-none d-sm-block">
                                 <span>Trang chủ</span>
                             </div>

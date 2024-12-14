@@ -53,7 +53,7 @@
                     <div class="card-header bg-dark">
                         <h4 class="m-b-0 text-white">Update Customer</h4>
                     </div>
-                    <form id="form-edit" method="GET">
+                    <form:form modelAttribute="customer" action="${customer}" id="form-edit" method="GET">
                         <!-- Dòng 1-->
                         <div class="form-body">
                             <form>
@@ -68,8 +68,8 @@
                                         <!--/span-->
                                         <div class="col-md-4">
                                             <div class="form-group has-danger">
-                                                <input type="text" id="name" name="name"
-                                                       class="form-control form-control-danger"/>
+                                                <form:input type="text" id="fullName" name="fullName"
+                                                            class="form-control form-control-danger" path="fullName"/>
                                             </div>
                                         </div>
                                         <div class="col-md-3"></div>
@@ -84,8 +84,8 @@
                                         <!--/span-->
                                         <div class="col-md-4">
                                             <div class="form-group has-danger">
-                                                <input type="text" id="customerPhone" name="name"
-                                                       class="form-control form-control-danger"/>
+                                                <form:input type="text" id="phone" name="phone"
+                                                            class="form-control form-control-danger" path="phone"/>
                                             </div>
                                         </div>
                                         <div class="col-md-3"></div>
@@ -100,8 +100,8 @@
                                         <!--/span-->
                                         <div class="col-md-4">
                                             <div class="form-group has-danger">
-                                                <input type="email" id="email" name="email"
-                                                       class="form-control form-control-danger"/>
+                                                <form:input type="email" id="email" name="email"
+                                                            class="form-control form-control-danger" path="email"/>
                                             </div>
                                         </div>
                                         <div class="col-md-3"></div>
@@ -116,8 +116,9 @@
                                         <!--/span-->
                                         <div class="col-md-4">
                                             <div class="form-group has-danger">
-                                                <input type="text" id="companyName" name="companyName"
-                                                       class="form-control form-control-danger"/>
+                                                <form:input type="text" id="companyName" name="companyName"
+                                                            class="form-control form-control-danger"
+                                                            path="companyName"/>
                                             </div>
                                         </div>
                                         <div class="col-md-3"></div>
@@ -132,8 +133,8 @@
                                         <!--/span-->
                                         <div class="col-md-4">
                                             <div class="form-group has-danger">
-                                                <input type="text" id="demand" name="demand"
-                                                       class="form-control form-control-danger"/>
+                                                <form:input type="text" id="demand" name="demand"
+                                                            class="form-control form-control-danger" path="demand"/>
                                             </div>
                                         </div>
                                         <div class="col-md-3"></div>
@@ -148,21 +149,24 @@
                                         <!--/span-->
                                         <div class="col-md-4">
                                             <div class="form-group has-danger">
-                                                <input type="text" id="status" name="status"
-                                                       class="form-control form-control-danger"/>
+                                                <form:select path="status" class="form-control custom-select"
+                                                             data-placeholder="Choose a Category" tabindex="1">
+                                                    <form:options items="${transactionStatus}"/>
+                                                </form:select>
                                             </div>
                                         </div>
                                         <div class="col-md-3"></div>
                                     </div>
-
+                                    <form:input type="hidden" id="id" name="id"
+                                                class="form-control form-control-danger" path="id"/>
                                     <div class="row  d-flex justify-content-center">
-                                        <button id="btnAddOrUpdateBuilding" type="button"
+                                        <button id="btnUpdateCustomer" type="button"
                                                 class="btn btn-dark ms-auto">
                                             <i class="m-r-10 m-l-40 mdi mdi-content-save"></i>
                                             Update Customer
                                         </button>
 
-                                        <button id="btnCancel" type="button" class="  btn btn-info ms-auto"
+                                        <button id="btnCancel" type="button" class="  btn btn-success ms-auto"
                                                 style="margin-left: 5px">
                                             <i class="mdi mdi-backspace"></i>
                                             Hủy thao tác
@@ -172,211 +176,237 @@
 
                             </form>
                         </div>
-                    </form>
+                    </form:form>
 
                 </div>
 
                 <%--                ////////////////////////////////////////////////////
                 //////////////////////////////////
                 /////////////////////////////////--%>
-                <div class="card">
-                    <div class="card-header bg-dark">
-                        <h4 class="text-white">#Chăm sóc khách hàng</h4>
-                    </div>
-                    <form id="form-edit" method="GET">
-                        <!-- Dòng 1-->
-                        <div class="form-body">
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <h4 class="card-title col-lg-6">Customer Care Table</h4>
-                                            <div class="col-lg-6 d-flex justify-content-end">
-                                                <a type="button" class="btn btn-success" id="addBuilding"
-                                                   href="/admin/building-edit"><i class="fa fas fa-pallet"></i> New</a>
+                <c:forEach var="item" items="${transactionType}">
+                    <div class="card">
+                        <div class="card-header bg-dark">
+                            <h4 class="text-white">#${item.value}</h4>
+                        </div>
+                        <form id="form-cskh" method="GET">
+                            <!-- Dòng 1-->
+                            <div class="form-body">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <c:if test="${item.key == 'CSKH'}">
+                                                <div class="row">
+                                                    <h4 class="card-title col-lg-6">Customer Care Table</h4>
+                                                    <div class="col-lg-6 d-flex justify-content-end">
+                                                        <a type="button" class="btn btn-success"
+                                                           onclick="addCustomer('${item.key}', ${customer.id})"
+                                                           id="btnAddCSKH"
+                                                        ><i class="fa fas fa-pallet"></i> New</a>
+                                                    </div>
+                                                </div>
+                                                <h6 class="card-subtitle">Tư vấn, hỗ trợ, giải đáp thắc mắc cho khách
+                                                    hàng qua các kênh online</h6>
+                                            </c:if>
+                                            <c:if test="${item.key == 'GDTT'}">
+                                                <div class="row">
+                                                    <h4 class="card-title col-lg-6">Direct Transaction</h4>
+                                                    <div class="col-lg-6 d-flex justify-content-end">
+                                                        <a type="button" class="btn btn-success" id="btnAddGDTT"
+                                                           onclick="addCustomer('${item.key}', ${customer.id})"><i
+                                                                class="fa fas fa-pallet"></i>
+                                                            New</a>
+                                                    </div>
+                                                </div>
+                                                <h6 class="card-subtitle">Gặp mặt trực tiếp khách hàng</h6>
+                                            </c:if>
+
+
+                                            <div class="table-responsive">
+                                                <table class="table">
+                                                    <thead class="bg-success text-white">
+                                                    <tr class="text-center">
+                                                        <th>Created Date</th>
+                                                        <th>Created By</th>
+                                                        <th>Transaction Details</th>
+                                                        <th>Action</th>
+
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody class="border border-success">
+                                                    <c:forEach var="list" items="${item.key == 'CSKH' ? CSKH :GDTT}">
+                                                        <tr class="text-center">
+                                                            <td>${list.createdDate}</td>
+                                                            <td>${list.createdBy}</td>
+                                                            <td>${list.note}</td>
+                                                            <td class="text-center">
+                                                                <div class="row d-flex justify-content-center">
+                                                                    <div class="col-lg-4 d-flex justify-content-center">
+                                                                        <a type="button"
+                                                                           onclick="updateCustomer(${list.id},'${item.key}')"
+                                                                           class="btn btn-success "
+                                                                           data-toggle="tooltip" data-placement="top"
+                                                                           title=""
+                                                                           data-original-title="Sửa giao dịch!">
+                                                                            <i class="fas fa-edit"> </i>
+                                                                        </a></div>
+                                                                    <div class="col-lg-4 d-flex justify-content-center">
+                                                                        <a type="button"
+                                                                           onclick="deleteCustomer( )"
+                                                                           class="btn btn-dark "
+                                                                           data-toggle="tooltip" data-placement="top"
+                                                                           title=""
+                                                                           data-original-title="Delete!">
+                                                                            <i class="far fa-trash-alt "
+                                                                               style="color: white;"></i>
+                                                                        </a>
+                                                                    </div>
+
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                    </tbody>
+                                                </table>
                                             </div>
-                                        </div>
-                                        <h6 class="card-subtitle">Tư vấn, hỗ trợ, giải đáp thắc mắc cho khách hàng qua
-                                            các kênh online</h6>
-
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead class="bg-success text-white">
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Created Date</th>
-                                                    <th>Created By</th>
-                                                    <th>Transaction Details</th>
-                                                    <th>Action</th>
-                                                    <td></td>
-
-                                                </tr>
-                                                </thead>
-                                                <tbody class="border border-success">
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>2024-02-12</td>
-                                                    <td>Nguyễn Văn Trọng</td>
-                                                    <td>Gọi điện tư vấn khách hàng</td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>2024-02-12</td>
-                                                    <td>Nguyễn Văn Trọng</td>
-                                                    <td>Liên hệ đặt lịch hẹn gặp mặt</td>
-                                                    <td></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
 
-                </div>
-
-                  <div class="card">
-                    <div class="card-header bg-dark">
-                        <h4 class="text-white">#Giao dịch trực tiếp</h4>
                     </div>
-                    <form id="form-edit" method="GET">
-                        <!-- Dòng 1-->
-                        <div class="form-body">
-                            <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <h4 class="card-title col-lg-6">Direct Transaction</h4>
-                                            <div class="col-lg-6 d-flex justify-content-end">
-                                                <a type="button" class="btn btn-success" id="addBuilding"
-                                                   href="/admin/building-edit"><i class="fa fas fa-pallet"></i> New</a>
-                                            </div>
-                                        </div>
-                                        <h6 class="card-subtitle">Gặp mặt trực tiếp khách hàng</h6>
-
-                                        <div class="table-responsive">
-                                            <table class="table">
-                                                <thead class="bg-success text-white">
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Created Date</th>
-                                                    <th>Created By</th>
-                                                    <th>Transaction Details</th>
-                                                    <th>Action</th>
-                                                    <td></td>
-
-                                                </tr>
-                                                </thead>
-                                                <tbody class="border border-success">
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>2024-02-12</td>
-                                                    <td>Nguyễn Văn Trọng</td>
-                                                    <td>Dẫn khách hàng đi ăn</td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>2024-02-12</td>
-                                                    <td>Nguyễn Văn Trọng</td>
-                                                    <td>Dẫn khách hàng đi xem mặt bằng thực tế</td>
-                                                    <td></td>
-
-                                                </tr>
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-
-                </div>
+                </c:forEach>
 
             </div>
         </div>
     </div>
+    <%--modal--%>
 
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="label1">New Transaction</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formTransactionEdit">
+                        <input class="hide" id="customerId" name="customerId" value="">
+                        <input class="hide" id="code" name="code" value="">
+                        <input class="hide" id="id" name="id" value="">
 
+                        <div class="form-group">
+                            <label class="control-label">Transaction Detail:</label>
+                            <input type="text" name="note" class="form-control" id="note">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+                    <button type="submit" id="btnSaveTransaction" class="btn btn-success">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
     $('#btnCancel').click(function () {
-        window.location.href = '<c:url value ="/admin/building-view"/>'; //Quay về trang list
-    })
-
-    var imageBase64 = '';
-    var imageName = '';
-
-
-    $('#btnAddOrUpdateBuilding').click(function () {
-
-        var data = {};
-        var typeCode = [];
-        var formData = $('#form-edit').serializeArray();
-
-
-        $.each(formData, function (index, value) {
-            if (value.name != 'typeCode') {
-                data["" + value.name + ""] = value.value;
-            } else {
-                typeCode.push(value.value);
-            }
-
-            if ('' != imageBase64) {
-                data['imageBase64'] = imageBase64;
-                data['imageName'] = imageName;
-            }
-        });
-        data['typeCode'] = typeCode;
-        if (typeCode != '') {
-            addOrUpdateBuilding(data);
-        } else {
-            toastr.info('Chưa có thông tin loại tòa nhà!', 'Thông báo');
-        }
-
+        window.location.href = '<c:url value ="/admin/admin/customer-list"/>'; //Quay về trang list
     });
 
-    function openImage(input, imageView) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#' + imageView).attr('src', reader.result);
+    function addCustomer(code, customerId) {// Thêm mới khách hàng
+        $('#editModal').modal();
+        $('#code').val(code);
+        $('#customerId').val(customerId);
+
+    }
+
+    function updateCustomer(transactionId, code){
+        $('#editModal').modal();
+        $('#code').val(code);
+        $('#id').val(transactionId);
+        $('#customerId').val(${customer.id})
+        loadTransaction(transactionId);
+
+    }
+    // load transaction
+    function loadTransaction(transactionId) {
+        $.ajax({
+            type: "GET",
+            url: "/api/transaction/" + transactionId + "/detail",
+            contentType: "application/JSON",
+            dataType: "JSON",
+            success: function (response) {
+               $('#note').val(response.note);
+            },
+            error: function (response) {
+                console.log("Failed!");
+                window.location.href = '<c:url value="/admin/building-view?message=error"/>';
+                console.log(response);
             }
-        }
+
+        });
     }
 
 
-    $('#uploadImage').change(function (event) {
-        var reader = new FileReader();
-        var file = $(this)[0].files[0];
-        reader.onload = function (e) {
-            imageBase64 = e.target.result;
-            imageName = file.name;
-        }
+    $('#btnUpdateCustomer').click(function () {// Update thông tin khách hàng
+        var data = {};
+        var formData = $('#form-edit').serializeArray();
+        $.each(formData, function (index, value) {
+            data["" + value.name + ""] = value.value;
+        });
+        editCustomer(data);// Gọi Ajax call API
+
     });
 
+    $('#btnSaveTransaction').click(function () {
+        var data = {};
+        var formData = $('#formTransactionEdit').serializeArray();
+        $.each(formData, function (index, value) {
+            data["" + value.name + ""] = value.value;
+        });
+        saveTransaction(data);
 
-    function addOrUpdateBuilding(data) {
+    });
+
+    function saveTransaction(data) {
         //Call api
         $.ajax({
             type: "POST",
-            url: "${buildingAPI}",
+            url: "/api/transaction",
             data: JSON.stringify(data),
             contentType: "application/JSON",
-            dataType: "JSON",
-            success: function (respond) {
-                window.location.href = '<c:url value="/admin/building-view?message=success"/>';
+            //dataType: "JSON",
+            success: function () {
+                 $('#editModal').modal('hide');
+                toastr.success('Thao tác thành công!', 'Success');
+
             },
-            error: function (respond) {
-                console.log("Failed!");
-                console.log(respond);
-                toastr.warning('Tên, Quận, Phường, Đường, Diện tích thuê, Số tầng hầm, diện tích sàn không được để trống!', 'Cảnh báo');
+            error: function () {
+                toastr.error('Xảy ra lỗi khi thao tác!', 'Cảnh báo');
+            }
+
+        });
+        setTimeout(function () {// load lại trang sau khi save thành công
+            window.location.reload();
+        }, 1200); //
+    }
+
+    function editCustomer(data) {
+        //Call api
+        $.ajax({
+            type: "PUT",
+            url: "/api/customer",
+            data: JSON.stringify(data),
+            contentType: "application/JSON",
+            //dataType: "JSON",
+            success: function () {
+                window.location.href = '<c:url value="/admin/customer-list?message=success-edit"/>';
+            },
+            error: function () {
+                toastr.warning('Xảy ra lỗi khi thực hiện thao tác!', 'Cảnh báo');
             }
 
         });

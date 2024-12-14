@@ -11,13 +11,11 @@ public class TransactionEntity extends BaseEntity{
     @Column(name = "note")
     private String note;
 
+
     @ManyToOne
     @JoinColumn(name = "customerid", referencedColumnName = "id")
     private CustomerEntity customer;
 
-    @ManyToOne
-    @JoinColumn(name = "staffid", referencedColumnName = "id")
-    private UserEntity staff;
 
     public String getCode() {
         return code;
@@ -43,11 +41,4 @@ public class TransactionEntity extends BaseEntity{
         this.customer = customer;
     }
 
-    public UserEntity getStaff() {
-        return staff;
-    }
-
-    public void setStaff(UserEntity staff) {
-        this.staff = staff;
-    }
 }

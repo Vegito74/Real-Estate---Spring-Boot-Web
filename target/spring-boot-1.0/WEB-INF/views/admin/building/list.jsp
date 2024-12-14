@@ -351,7 +351,7 @@
             <div class="modal-body">
 
                 <div class="form-group">
-                    <label for="recipient-name" class="control-label">Nhân viên:</label>
+                    <label  class="control-label">Nhân viên:</label>
                     <select name="staffId" class="form-contưrol custom-select"
                             data-placeholder="Choose a Category" tabindex="1">
                         <option value="Category 1">-- Chọn Nhân viên --</option>

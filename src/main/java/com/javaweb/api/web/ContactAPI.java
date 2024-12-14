@@ -1,6 +1,6 @@
 package com.javaweb.api.web;
 
-import com.javaweb.enums.TransactionType;
+import com.javaweb.enums.TransactionStatus;
 import com.javaweb.model.dto.CustomerDTO;
 import com.javaweb.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ public class ContactAPI {
     private CustomerService customerService;
     @PutMapping("/customer")
     public void addCustomer(@RequestBody CustomerDTO customerDTO){
-        customerDTO.setStatus(TransactionType.CHUA_XU_LY.name());
+        customerDTO.setStatus(TransactionStatus.CHUA_XU_LY.name());
         customerService.addOrUpdateCustomer(customerDTO);
     }
 }

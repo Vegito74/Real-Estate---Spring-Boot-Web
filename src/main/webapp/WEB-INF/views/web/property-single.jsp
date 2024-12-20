@@ -66,11 +66,10 @@
             <div class="col-lg-4">
                 <h2 class="heading text-primary"> 35/41 Tu Hoàng, Phương Canh, Nam Từ Liêm, Hà Nội</h2>
                 <p class="meta">California, United States</p>
-                <p class="text-black-50">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ratione
-                    laborum quo quos omnis sed magnam id, ducimus saepe, debitis error
-                    earum, iste dicta odio est sint dolorem magni animi tenetur.
-                </p>
+                <div class="row">
+                    <div class="col-lg-4"><h6 class="text-black">Giá thuê:</h6></div>
+                     </div>
+               <h6 class="text-black">Giá thuê:</h6>
                 <p class="text-black-50">
                     Perferendis eligendi reprehenderit, assumenda molestias nisi eius
                     iste reiciendis porro tenetur in, repudiandae amet libero.

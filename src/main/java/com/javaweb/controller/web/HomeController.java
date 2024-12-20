@@ -1,7 +1,10 @@
 package com.javaweb.controller.web;
 
+import com.javaweb.enums.districtCode;
 import com.javaweb.model.request.BuildingSearchRequest;
-import com.javaweb.utils.DistrictCode;
+import com.javaweb.service.BuildingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -17,41 +20,48 @@ import javax.servlet.http.HttpSession;
 
 @Controller(value = "homeControllerOfWeb")
 public class HomeController {
+    @Autowired
+    private  BuildingService buildingService;
 
     @RequestMapping(value = "/trang-chu", method = RequestMethod.GET)
     public ModelAndView homePage(BuildingSearchRequest buildingSearchRequest, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("web/home");
+        mav.addObject("buildingTop5", buildingService.findTop5Building());
         mav.addObject("modelSearch", buildingSearchRequest);
-        mav.addObject("districts", DistrictCode.type());
+        mav.addObject("districts", districtCode.type());
         return mav;
     }
 
-    @GetMapping(value="/services")
-    public ModelAndView BuidingServices(){
+    @GetMapping(value = "/services")
+    public ModelAndView BuidingServices() {
         ModelAndView mav = new ModelAndView("web/service");
         return mav;
     }
 
-    @GetMapping(value="/property-single")
-    public ModelAndView buidingsingle(){
+    @GetMapping(value = "/property-single")
+    public ModelAndView buidingsingle() {
         ModelAndView mav = new ModelAndView("/web/property-single");
         return mav;
     }
 
-    @GetMapping(value="/properties")
-    public ModelAndView buidingList(){
+    @GetMapping(value = "/properties")
+    public ModelAndView buidingList(BuildingSearchRequest buildingSearchRequest, HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("/web/properties");
+        mav.addObject("buildingTop5", buildingService.findTop5Building());
+        mav.addObject("districts", districtCode.type());
+        mav.addObject("buildings",buildingService.findAll(buildingSearchRequest));
+        mav.addObject("modelSearch", buildingSearchRequest);
         return mav;
     }
 
-    @GetMapping(value="/about")
-    public ModelAndView about(){
+    @GetMapping(value = "/about")
+    public ModelAndView about() {
         ModelAndView mav = new ModelAndView("/web/about");
         return mav;
     }
 
-    @GetMapping(value="/contact")
-    public ModelAndView contact(){
+    @GetMapping(value = "/contact")
+    public ModelAndView contact() {
         ModelAndView mav = new ModelAndView("/web/contact");
         return mav;
     }

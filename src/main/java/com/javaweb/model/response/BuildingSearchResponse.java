@@ -5,7 +5,6 @@ import com.javaweb.model.dto.AbstractDTO;
 
 public class BuildingSearchResponse extends AbstractDTO {
 	private Long id;
-	private String createdDate;
 	private String name;
 	private String address;
 	private Long numberOfBasement;
@@ -18,17 +17,41 @@ public class BuildingSearchResponse extends AbstractDTO {
     private String serviceFee;
     private Double brokerageFee;
 
+	private String rentPriceDescription;
+	private String direction;
+	private String level;
+
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public void setCreatedDate(String createdDate) {
-		this.createdDate = createdDate;
+	public String getRentPriceDescription() {
+		return rentPriceDescription;
 	}
+
+	public void setRentPriceDescription(String rentPriceDescription) {
+		this.rentPriceDescription = rentPriceDescription;
+	}
+
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
+
+	public String getLevel() {
+		return level;
+	}
+
+	public void setLevel(String level) {
+		this.level = level;
+	}
+
 	public String getManagerName() {
 		return managerName;
 	}

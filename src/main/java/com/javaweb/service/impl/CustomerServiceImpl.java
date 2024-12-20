@@ -1,17 +1,19 @@
 package com.javaweb.service.impl;
 
 import com.javaweb.converter.CustomerConverter;
-import com.javaweb.entity.BuildingEntity;
 import com.javaweb.entity.CustomerEntity;
 import com.javaweb.entity.UserEntity;
+import com.javaweb.enums.TransactionStatus;
 import com.javaweb.model.dto.AssignmentCustomerDTO;
 import com.javaweb.model.dto.CustomerDTO;
+import com.javaweb.model.request.CustomerSearchRequest;
 import com.javaweb.model.response.CustomerNewReponse;
 import com.javaweb.model.response.ResponseDTO;
 import com.javaweb.model.response.StaffResponseDTO;
 import com.javaweb.repository.CustomerRepository;
 import com.javaweb.repository.TransactionRepository;
 import com.javaweb.repository.UserRepository;
+import com.javaweb.repository.custom.CustomerRepositoryCustom;
 import com.javaweb.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Transactional
@@ -39,12 +42,15 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerConverter customerConverter;
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private CustomerRepositoryCustom customerRepositoryCustom;
     @Override
     public List<CustomerNewReponse> findAllNewCustomers() {
-        List<CustomerEntity> customerEntities = customerRepository.findAllByUserEntitiesIsNull();
+        List<CustomerEntity> customerEntities = customerRepository.findAllByStatus(TransactionStatus.CHUA_XU_LY.name());
         List<CustomerNewReponse> customerNewReponses = new ArrayList<>();
         for (CustomerEntity item : customerEntities) {
             customerNewReponses.add(modelMapper.map(item, CustomerNewReponse.class));
@@ -53,7 +59,17 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerDTO> findAllCustomers() {
+    public List<CustomerDTO> findAllCustomers(CustomerSearchRequest customerSearchRequest) {
+        List<CustomerEntity> customerEntities = customerRepositoryCustom.findAll(customerSearchRequest);
+        List<CustomerDTO> customerDTOs = new ArrayList<>();
+        for (CustomerEntity item : customerEntities) {
+            customerDTOs.add(customerConverter.toCustomerDTO(item));
+        }
+        return customerDTOs;
+    }
+
+    @Override
+    public List<CustomerDTO> findAll() {
         List<CustomerEntity> customerEntities = customerRepository.findAll();
         List<CustomerDTO> customerDTOs = new ArrayList<>();
         for (CustomerEntity item : customerEntities) {
@@ -102,6 +118,9 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void addAssignmentCustomer(AssignmentCustomerDTO assignmentCustomerDTO) {
         CustomerEntity customerEntity = customerRepository.findCustomerEntityById(assignmentCustomerDTO.getCustomerId());
+        if(customerEntity.getStatus().equals(TransactionStatus.CHUA_XU_LY.name())){// Chuyển trạng thái về đang xử lý khi giao cho nhân viên
+            customerEntity.setStatus(TransactionStatus.DANG_XU_LY.name());
+        }
         List<UserEntity> staffs = userRepository.findByIdIn(assignmentCustomerDTO.getStaffs());
         customerEntity.setUserEntities(staffs);
         customerRepository.save(customerEntity);
@@ -111,5 +130,10 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void deleteCustomer(Long id) {
         customerRepository.deleteById(id);
+    }
+
+    @Override
+    public Long countCustomers(String status) {// Lấy số lượng khách hàng đang chờ xử lý
+        return customerRepository.countAllByStatus(status);
     }
 }

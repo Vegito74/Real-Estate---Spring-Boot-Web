@@ -21,4 +21,9 @@ public class TransactionAPI {
         return  transactionService.getTransaction(id);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteTransaction(@PathVariable Long id) {
+        transactionService.deleteTransaction(id);
+    }
+
 }

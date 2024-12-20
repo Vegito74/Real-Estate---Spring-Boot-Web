@@ -33,4 +33,6 @@ public class CustomerAPI {
     public void updateAssignmentBuilding(@RequestBody AssignmentCustomerDTO assignmentCustomerDTO) {
         customerService.addAssignmentCustomer(assignmentCustomerDTO);
     }
+
+
 }

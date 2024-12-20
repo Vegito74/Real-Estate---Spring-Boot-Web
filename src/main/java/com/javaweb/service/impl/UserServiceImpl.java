@@ -9,8 +9,10 @@ import com.javaweb.entity.UserEntity;
 import com.javaweb.exception.MyException;
 import com.javaweb.repository.RoleRepository;
 import com.javaweb.repository.UserRepository;
+import com.javaweb.repository.custom.RoleRepositoryCustom;
 import com.javaweb.service.IUserService;
 import org.apache.commons.lang.StringUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +25,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
-public class UserService implements IUserService {
+public class UserServiceImpl implements IUserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -32,10 +34,15 @@ public class UserService implements IUserService {
     private RoleRepository roleRepository;
 
     @Autowired
+    private RoleRepositoryCustom roleRepositoryCustom;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
     private UserConverter userConverter;
+    @Autowired
+    private ModelMapper modelMapper;
 
 
 
@@ -91,6 +98,19 @@ public class UserService implements IUserService {
         return listStaff;
     }
 
+    @Override
+    public List<UserDTO> getAllUserActive() {
+        List<UserEntity> userEntity = userRepository.findByStatus(1);
+        List<UserDTO> results = new ArrayList<>();
+        for(UserEntity user: userEntity) {
+            UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+            userDTO.setRoleName((roleRepositoryCustom.findByUserId(userDTO.getId())).getName());
+            userDTO.setRoleCode((roleRepositoryCustom.findByUserId(userDTO.getId())).getCode());
+            results.add(userDTO);
+        }
+        return results;
+    }
+
 
     @Override
     public int getTotalItems(String searchValue) {
@@ -136,12 +156,15 @@ public class UserService implements IUserService {
     @Transactional
     public UserDTO update(Long id, UserDTO updateUser) {
         RoleEntity role = roleRepository.findOneByCode(updateUser.getRoleCode());
-        UserEntity oldUser = userRepository.findById(id).get();
-        UserEntity userEntity = userConverter.convertToEntity(updateUser);
-        userEntity.setUserName(oldUser.getUserName());
-        userEntity.setStatus(oldUser.getStatus());
+//        UserEntity oldUser = userRepository.findById(id).get();
+//        UserEntity userEntity = userConverter.convertToEntity(updateUser);
+        UserEntity userEntity =  userRepository.findById(id).get();
         userEntity.setRoles(Stream.of(role).collect(Collectors.toList()));
-        userEntity.setPassword(oldUser.getPassword());
+//        userEntity.setId(id);
+//        userEntity.setUserName(oldUser.getUserName());
+//        userEntity.setStatus(oldUser.getStatus());
+//        userEntity.setRoles(Stream.of(role).collect(Collectors.toList()));
+//        userEntity.setPassword(oldUser.getPassword());
         return userConverter.convertToDto(userRepository.save(userEntity));
     }
 

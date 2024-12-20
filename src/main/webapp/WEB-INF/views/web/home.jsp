@@ -24,11 +24,18 @@
                 <h1 class="heading" data-aos="fade-up">
                     Dễ dàng tìm kiếm ngôi nhà mơ ước của bạn
                 </h1>
-                <form action="#" class="narrow-w form-search d-flex align-items-stretch mb-3" data-aos="fade-up"
-                      data-aos-delay="200">
-                    <input type="text" class="form-control px-4" placeholder="Tìm kiếm theo địa điểm"/>
+                <form:form modelAttribute="modelSearch" action="#"
+                           class="narrow-w form-search d-flex align-items-stretch mb-20" data-aos="fade-up"
+                           data-aos-delay="200">
+                    <form:select path="district"
+                                 class="form-control custom-select"
+                    >
+                        <form:option value="">-- Chọn Quận --</form:option>
+                        <form:options items="${districts}"/>
+
+                    </form:select>
                     <button type="submit" class="btn btn-primary">Search</button>
-                </form>
+                </form:form>
             </div>
         </div>
     </div>
@@ -53,244 +60,37 @@
             <div class="col-12">
                 <div class="property-slider-wrap">
                     <div class="property-slider">
-                        <div class="property-item">
-                            <a href="/property-single" class="img">
-                                <img src="web/images/img_1.jpg" alt="Image" class="img-fluid"/>
-                            </a>
-
-                            <div class="property-content">
-                                <div class="price mb-2"><span>74tr/m<sup>2</sup></span></div>
-                                <div>
-                                <span class="d-block mb-2 text-black-50">35/41 Tu Hoàng, Phường Phương Canh</span
-                                >
-                                    <span class="city d-block mb-3">Quận Nam Từ Liêm, Hà Nội</span>
-
-                                    <div class="specs d-flex mb-4">
-                                    <span class="d-block d-flex align-items-center me-3">
-                          <span class="icon-bed me-2"></span>
-                                    <span class="caption">2 floors</span>
-                                    </span>
-                                        <span class="d-block d-flex align-items-center">
-                          <span class="icon-bath me-2"></span>
-                                    <span class="caption">2 baths</span>
-                                    </span>
-                                    </div>
-
-                                    <a href="/property-single" class="btn btn-primary py-2 px-3">See details</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
                         <!-- .item -->
+                        <c:forEach items="${buildingTop5}" var="items">
+                            <div class="property-item">
+                                <a href="/property-single" class="img">
+                                    <img src="web/images/img_2.jpg" alt="Image" class="img-fluid"/>
+                                </a>
 
-                        <div class="property-item">
-                            <a href="/property-single" class="img">
-                                <img src="web/images/img_2.jpg" alt="Image" class="img-fluid"/>
-                            </a>
+                                <div class="property-content">
+                                    <div class="price mb-2"><span>${items.rentPrice}tr/m<sup>2</sup></span></div>
+                                    <div>
+                                        <span class="d-block mb-2 text-black-50">${items.address}</span>
+                                        <span class="city d-block mb-3">${items.name}</span>
 
-                            <div class="property-content">
-                                <div class="price mb-2"><span>74tr/m<sup>2</sup></span></div>
-                                <div>
-                                    <span class="d-block mb-2 text-black-50">35/41 Tu Hoàng, Phường Phương Canh</span>
-                                    <span class="city d-block mb-3">Quận Nam Từ Liêm, Hà Nội</span>
-
-                                    <div class="specs d-flex mb-4">
+                                        <div class="specs d-flex mb-4">
                                             <span class="d-block d-flex align-items-center me-3">
-                          <span class="icon-bed me-2"></span>
-                                            <span class="caption">2 floors</span>
+                                            <span class="icon-home2 me-2"></span>
+                                            <span class="caption">Hướng ${items.direction} </span>
                                             </span>
-                                        <span class="d-block d-flex align-items-center">
-                          <span class="icon-bath me-2"></span>
-                                            <span class="caption">2 baths</span>
+                                            <span class="d-block d-flex align-items-center">
+                                            <span class="icon-cube me-2"></span>
+                                            <span class="caption">${items.level} Tầng</span>
                                             </span>
-                                    </div>
+                                        </div>
 
-                                    <a href="/property-single" class="btn btn-primary py-2 px-3">See details</a
-                                    >
+                                        <a href="/property-single" class="btn btn-primary py-2 px-3">See details</a
+                                        >
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- .item -->
-
-                        <div class="property-item">
-                            <a href="/property-single" class="img">
-                                <img src="web/images/img_3.jpg" alt="Image" class="img-fluid"/>
-                            </a>
-
-                            <div class="property-content">
-                                <div class="price mb-2"><span>74tr/m<sup>2</sup></span></div>
-                                <div>
-                                                <span class="d-block mb-2 text-black-50">35/41 Tu Hoàng, Phường Phương Canh</span
-                                                >
-                                    <span class="city d-block mb-3">Quận Nam Từ Liêm, Hà Nội</span>
-
-                                    <div class="specs d-flex mb-4">
-                                                    <span class="d-block d-flex align-items-center me-3">
-                          <span class="icon-bed me-2"></span>
-                                                    <span class="caption">2 floors</span>
-                                                    </span>
-                                        <span class="d-block d-flex align-items-center">
-                          <span class="icon-bath me-2"></span>
-                                                    <span class="caption">2 baths</span>
-                                                    </span>
-                                    </div>
-
-                                    <a href="/property-single" class="btn btn-primary py-2 px-3">See details</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .item -->
-
-                        <div class="property-item">
-                            <a href="/property-single" class="img">
-                                <img src="web/images/img_4.jpg" alt="Image" class="img-fluid"/>
-                            </a>
-
-                            <div class="property-content">
-                                <div class="price mb-2"><span>74tr/m<sup>2</sup></span></div>
-                                <div>
-                                                        <span class="d-block mb-2 text-black-50">35/41 Tu Hoàng, Phường Phương Canh</span
-                                                        >
-                                    <span class="city d-block mb-3">Quận Nam Từ Liêm, Hà Nội</span>
-
-                                    <div class="specs d-flex mb-4">
-                                                            <span class="d-block d-flex align-items-center me-3">
-                          <span class="icon-bed me-2"></span>
-                                                            <span class="caption">2 floors</span>
-                                                            </span>
-                                        <span class="d-block d-flex align-items-center">
-                          <span class="icon-bath me-2"></span>
-                                                            <span class="caption">2 baths</span>
-                                                            </span>
-                                    </div>
-
-                                    <a href="/property-single" class="btn btn-primary py-2 px-3">See details</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .item -->
-
-                        <div class="property-item">
-                            <a href="/property-single" class="img">
-                                <img src="web/images/img_5.jpg" alt="Image" class="img-fluid"/>
-                            </a>
-
-                            <div class="property-content">
-                                <div class="price mb-2"><span>74tr/m<sup>2</sup></span></div>
-                                <div>
-                                                                <span class="d-block mb-2 text-black-50">35/41 Tu Hoàng, Phường Phương Canh</span
-                                                                >
-                                    <span class="city d-block mb-3">Quận Nam Từ Liêm, Hà Nội</span>
-
-                                    <div class="specs d-flex mb-4">
-                                                                    <span class="d-block d-flex align-items-center me-3">
-                          <span class="icon-bed me-2"></span>
-                                                                    <span class="caption">2 floors</span>
-                                                                    </span>
-                                        <span class="d-block d-flex align-items-center">
-                          <span class="icon-bath me-2"></span>
-                                                                    <span class="caption">2 baths</span>
-                                                                    </span>
-                                    </div>
-
-                                    <a href="/property-single" class="btn btn-primary py-2 px-3">See details</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .item -->
-
-                        <div class="property-item">
-                            <a href="/property-single" class="img">
-                                <img src="web/images/img_6.jpg" alt="Image" class="img-fluid"/>
-                            </a>
-
-                            <div class="property-content">
-                                <div class="price mb-2"><span>74tr/m<sup>2</sup></span></div>
-                                <div>
-                                                                        <span class="d-block mb-2 text-black-50">35/41 Tu Hoàng, Phường Phương Canh</span
-                                                                        >
-                                    <span class="city d-block mb-3">Quận Nam Từ Liêm, Hà Nội</span>
-
-                                    <div class="specs d-flex mb-4">
-                                                                            <span class="d-block d-flex align-items-center me-3">
-                          <span class="icon-bed me-2"></span>
-                                                                            <span class="caption">2 floors</span>
-                                                                            </span>
-                                        <span class="d-block d-flex align-items-center">
-                          <span class="icon-bath me-2"></span>
-                                                                            <span class="caption">2 baths</span>
-                                                                            </span>
-                                    </div>
-
-                                    <a href="/property-single" class="btn btn-primary py-2 px-3">See details</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .item -->
-
-                        <div class="property-item">
-                            <a href="/property-single" class="img">
-                                <img src="web/images/img_7.jpg" alt="Image" class="img-fluid"/>
-                            </a>
-
-                            <div class="property-content">
-                                <div class="price mb-2"><span>74tr/m<sup>2</sup></span></div>
-                                <div>
-                                                                                <span class="d-block mb-2 text-black-50">35/41 Tu Hoàng, Phường Phương Canh</span
-                                                                                >
-                                    <span class="city d-block mb-3">Quận Nam Từ Liêm, Hà Nội</span>
-
-                                    <div class="specs d-flex mb-4">
-                                                                                    <span class="d-block d-flex align-items-center me-3">
-                          <span class="icon-bed me-2"></span>
-                                                                                    <span class="caption">2 floors</span>
-                                                                                    </span>
-                                        <span class="d-block d-flex align-items-center">
-                          <span class="icon-bath me-2"></span>
-                                                                                    <span class="caption">2 baths</span>
-                                                                                    </span>
-                                    </div>
-
-                                    <a href="/property-single" class="btn btn-primary py-2 px-3">See details</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .item -->
-
-                        <div class="property-item">
-                            <a href="/property-single" class="img">
-                                <img src="web/images/img_8.jpg" alt="Image" class="img-fluid"/>
-                            </a>
-
-                            <div class="property-content">
-                                <div class="price mb-2"><span>74tr/m<sup>2</sup></span></div>
-                                <div>
-                                                                                        <span class="d-block mb-2 text-black-50">35/41 Tu Hoàng, Phường Phương Canh</span
-                                                                                        >
-                                    <span class="city d-block mb-3">Quận Nam Từ Liêm, Hà Nội</span>
-
-                                    <div class="specs d-flex mb-4">
-                                                                                            <span class="d-block d-flex align-items-center me-3">
-                          <span class="icon-bed me-2"></span>
-                                                                                            <span class="caption">2 floors</span>
-                                                                                            </span>
-                                        <span class="d-block d-flex align-items-center">
-                          <span class="icon-bath me-2"></span>
-                                                                                            <span class="caption">2 baths</span>
-                                                                                            </span>
-                                    </div>
-
-                                    <a href="/property-single" class="btn btn-primary py-2 px-3">See details</a
-                                    >
-                                </div>
-                            </div>
-                        </div>
-                        <!-- .item -->
+                            <!-- .item -->
+                        </c:forEach>
 
                         <div class="property-item">
                             <a href="/property-single" class="img">
@@ -321,6 +121,7 @@
                             </div>
                         </div>
                         <!-- .item -->
+
                     </div>
 
                     <div
@@ -602,7 +403,7 @@
         <div class="col-lg-8 mx-auto text-center">
             <h2 class="mb-4">Hãy liên hệ ngay với chúng tôi để nhận được ưu đãi đặc biệt</h2>
             <p>
-                <a href="#" target="_blank" class="btn btn-primary text-white py-3 px-4">Liên hệ với chúng tôi</a>
+                <a href="/contact" target="_blank" class="btn btn-primary text-white py-3 px-4">Liên hệ với chúng tôi</a>
             </p>
         </div>
         <!-- /.col-lg-7 -->

@@ -54,19 +54,19 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)"
                        aria-expanded="false">
-                        <i class="mdi mdi-account-circle"></i>
+                        <i class="mdi mdi-contacts"></i>
                         <span class="hide-menu">Customer</span>
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
                             <a href="/admin/customer-list" class="sidebar-link">
-                                <i class="mdi mdi-account-key"></i>
+                                <i class="mdi mdi-garage"></i>
                                 <span class="hide-menu">Information</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="/admin/customer-new" class="sidebar-link">
-                                <i class="mdi mdi-account-key"></i>
+                                <i class="mdi mdi-plus"></i>
                                 <span class="hide-menu">Add New Customer</span>
                             </a>
                         </li>

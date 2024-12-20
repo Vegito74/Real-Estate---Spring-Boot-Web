@@ -4,18 +4,20 @@ import com.javaweb.entity.BuildingEntity;
 import com.javaweb.model.request.BuildingSearchRequest;
 import com.javaweb.repository.custom.BuildingRepositoryCustom;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.lang.reflect.Field;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Primary
 @Repository
-public  class BuildingRepositoryImpl  implements BuildingRepositoryCustom {
+public  class BuildingRepositoryCustomImpl implements BuildingRepositoryCustom {
         @PersistenceContext //được sử dụng để tiêm (inject) một đối tượng EntityManager vào trong một class
         private EntityManager entityManager;
         // Kiểm tra điều kiện để join các bảng cần thiết
@@ -120,5 +122,18 @@ public  class BuildingRepositoryImpl  implements BuildingRepositoryCustom {
             return query.getResultList();
         }
 
+    @Override
+    public List<BuildingEntity> findTop5Buildings() {
+        StringBuilder sql = new StringBuilder("SELECT b.* ,SUM(r.value) AS total_rent_area " +
+                "FROM building b " +
+                "JOIN rentarea r ON b.id = r.buildingid " +
+                "GROUP BY b.id " +
+                "ORDER BY total_rent_area DESC " +
+                "LIMIT 5;");
+        Query query = entityManager.createNativeQuery(sql.toString(),BuildingEntity.class);
+
+        return query.getResultList();
     }
+
+}
 

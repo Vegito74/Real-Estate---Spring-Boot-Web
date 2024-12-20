@@ -28,6 +28,8 @@ public class RoleRepositoryImpl implements RoleRepository {
 		return (RoleEntity) query.getSingleResult();
 	}
 
+
+
 	@Override
 	public List<RoleEntity> findAll() {
 		String sql = "select * FROM role as r";

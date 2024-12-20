@@ -46,7 +46,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header bg-primary">
+                    <div class="card-header bg-dark">
                         <h4 class="m-b-0 text-white">Danh mục tìm kiếm</h4>
                     </div>
                     <form:form modelAttribute="modelSearch" id="listFrom" action="${buildingListURL}" method="GET">
@@ -205,7 +205,7 @@
                                 <div class="row d-flex justify-content-center">
 
                                     <button id="btnSearchBuilding" type="button"
-                                            class="btn btn-success ms-auto">
+                                            class="btn btn-dark ms-auto">
                                         <i class="fas fa-search"></i>
                                         Tìm kiếm
                                     </button>
@@ -227,28 +227,26 @@
                                 <div class="row">
                                     <h4 class="card-title col-lg-6">Danh sách Building</h4>
                                     <div class="col-lg-6 d-flex justify-content-end">
-                                        <a type="button" class="btn btn-primary" id="addBuilding"
+                                        <a type="button" class="btn btn-dark" id="addBuilding"
                                            href="/admin/building-edit"><i class="fa fa-building"></i> Add New</a>
                                     </div>
                                 </div>
                                 <h6 class="card-subtitle">Bảng danh sách thông tin chính của các tòa nhà hiện có
                                 </h6>
                                 <div class="table-responsive" style="font-family:'Times New Roman'">
-                                    <table id="multi_control" class="table table-striped table-bordered display"
+                                    <table id="multi_control" class="v-middle  table table-striped table-bordered display "
                                            style="width:100%">
-                                        <thead style="font-size: medium">
+                                        <thead class="bg-success text-white"  style="font-size: medium">
                                         <tr role="row">
                                             <th>Tên tòa nhà</th>
                                             <th>Địa chỉ</th>
+                                            <th>Hướng</th>
+                                            <th>Số tầng</th>
                                             <th>Số tầng hầm</th>
-                                            <th>Tên quản lý</th>
-                                            <th>Số điện thoại</th>
                                             <th>DT sàn</th>
-                                            <th>DT thuê</th>
                                             <th>DT trống</th>
                                             <th>Giá thuê</th>
-                                            <th>Phí môi giới</th>
-                                            <th>Phí dịch vụ</th>
+                                            <th>Mô tả giá</th>
                                             <th>Action</th>
                                         </tr>
                                         </thead>
@@ -257,39 +255,48 @@
                                             <tr id="row_${item.id}">
                                                 <td>${item.name}</td>
                                                 <td>${item.address}</td>
+                                                <td>${item.direction}</td>
+                                                <td class="text-center ">${item.level}</td>
                                                 <td>${item.numberOfBasement}</td>
-                                                <td>${item.managerName}</td>
-
-                                                <td>${item.managerPhone}</td>
                                                 <td>${item.floorArea}</td>
-                                                <td>${item.rentArea}</td>
-                                                <td>${item.emptyArea}</td>
+                                                <td> <span class="label label-success label-rounded font-normal">${item.emptyArea}</span></td>
                                                 <td>${item.rentPrice}</td>
-                                                <td>${item.brokerageFee}</td>
-                                                <td>${item.serviceFee}</td>
+                                                <td>${item.rentPriceDescription}</td>
                                                 <td class="">
                                                     <div class="row d-flex justify-content-center">
                                                         <button type="button"
-                                                                class="btn btn-info dropdown-toggle "
+                                                                class="btn btn-dark dropdown-toggle "
                                                                 data-toggle="dropdown" aria-haspopup="true"
                                                                 aria-expanded="false">
                                                             <i class="ti-settings"> Action</i>
                                                         </button>
                                                         <div class="dropdown-menu ">
                                                             <a class="dropdown-item"
-                                                               href="/admin/building-edit-${item.id}">Edit</a>
+
+                                                               href="/admin/building-edit-${item.id}"><i   style="margin-left: 50px"
+                                                                    class="fas fa-edit"></i> Edit</a>
                                                             <a id="" onclick="deleteBuilding(${item.id})"
+
                                                                class="dropdown-item "
-                                                            >Delete</a>
+                                                            ><i  style="margin-left: 50px" class="fas fa-trash-alt"></i> Delete</a>
                                                             <div class="dropdown-divider"></div>
-                                                            <a type="button" class="dropdown-item btn  "
+                                                            <a type="button" class="dropdown-item btn"
                                                                data-toggle="modal"
                                                                data-target="#assignmentBuildingModal"
                                                                data-whatever="@getbootstrap"
-                                                               onclick="assignmentbuilding(${item.id})">Thêm nhân viên
+                                                               onclick="assignmentbuilding(${item.id})"><i
+                                                                    class="far fa-address-card "></i> Thêm nhân viên
                                                                 quản lý</a>
                                                         </div>
+                                                         <div class="col-lg-4 d-flex justify-content-center ">
+                                                                    <a type="button" href="/admin/rent-area-${item.id}"
+                                                                       class="btn btn-success "
+                                                                       data-toggle="tooltip" data-placement="top"
+                                                                       data-original-title="Quản lý diện tích thuê!">
+                                                                        <i class="fas fa-list text-white" style="margin-top: 2px"> </i>
+                                                                    </a></div>
                                                     </div>
+
 
 
                                                 </td>
@@ -299,20 +306,18 @@
 
 
                                         </tbody>
-                                        <tfoot>
+                                        <tfoot class="bg-success text-white">
                                         <tr>
 
                                             <th>Tên tòa nhà</th>
                                             <th>Địa chỉ</th>
+                                            <th>Hướng</th>
+                                            <th>Số tầng</th>
                                             <th>Số tầng hầm</th>
-                                            <th>Tên quản lý</th>
-                                            <th>Số điện thoại</th>
                                             <th>DT sàn</th>
-                                            <th>DT thuê</th>
                                             <th>DT trống</th>
                                             <th>Giá thuê</th>
-                                            <th>Phí môi giới</th>
-                                            <th>Phí dịch vụ</th>
+                                            <th>Mô tả giá</th>
                                             <th>Action</th>
                                         </tr>
                                         </tfoot>
@@ -351,7 +356,7 @@
             <div class="modal-body">
 
                 <div class="form-group">
-                    <label  class="control-label">Nhân viên:</label>
+                    <label class="control-label">Nhân viên:</label>
                     <select name="staffId" class="form-contưrol custom-select"
                             data-placeholder="Choose a Category" tabindex="1">
                         <option value="Category 1">-- Chọn Nhân viên --</option>

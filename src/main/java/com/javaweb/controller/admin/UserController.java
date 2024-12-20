@@ -33,10 +33,8 @@ public class UserController {
 	@RequestMapping(value = "/admin/user-list", method = RequestMethod.GET)
 	public ModelAndView getNews(@ModelAttribute(SystemConstant.MODEL) UserDTO model, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("admin/user/list");
-		DisplayTagUtils.of(request, model);
-		List<UserDTO> news = userService.getUsers(model.getSearchValue(), PageRequest.of(model.getPage() - 1, model.getMaxPageItems()));
-		model.setListResult(news);
-		model.setTotalItems(userService.countTotalItems());
+		mav.addObject("users", userService.getAllUserActive());
+		mav.addObject("roles", roleService.getRoles());
 		mav.addObject(SystemConstant.MODEL, model);
 		initMessageResponse(mav, request);
 		return mav;

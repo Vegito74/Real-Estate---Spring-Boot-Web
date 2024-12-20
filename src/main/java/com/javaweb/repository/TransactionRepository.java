@@ -11,5 +11,4 @@ import java.util.List;
 public interface TransactionRepository extends JpaRepository<TransactionEntity, Long> {
     List<TransactionEntity> findAllByCustomerIdAndCode(Long id, String code);
     List<TransactionEntity> findAllByCustomer(CustomerEntity customer);
-    TransactionEntity findById(long id);
 }

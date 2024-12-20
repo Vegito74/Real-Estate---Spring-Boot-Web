@@ -183,100 +183,163 @@
                 <%--                ////////////////////////////////////////////////////
                 //////////////////////////////////
                 /////////////////////////////////--%>
-                <c:forEach var="item" items="${transactionType}">
-                    <div class="card">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <c:forEach var="item" items="${transactionType}">
+                            <div class="card">
+                                <div class="card-header bg-dark">
+                                <h4 class="text-white">#${item.value}</h4>
+                                 <c:if test="${item.key == 'CSKH'}">
+                                 <h6 class="card-subtitle">Tư vấn, hỗ trợ, giải đáp thắc mắc cho khách hàng </h6>
+                                 </c:if>
+                                 <c:if test="${item.key == 'GDTT'}">
+                                 <h6 class="card-subtitle">Các hợp đồng mua bán đã thực hiện</h6>
+                                 </c:if>
+
+                                </div>
+                                <form method="GET">
+                                    <!-- Dòng 1-->
+                                    <div class="form-body">
+                                        <div class="col-lg-12">
+                                            <div class="card">
+                                                <div class="card-body">
+                                                    <c:if test="${item.key == 'CSKH'}">
+                                                        <div class="row">
+                                                            <h4 class="card-title col-lg-6"></h4>
+
+                                                            <div class="col-lg-6 d-flex justify-content-end text-white">
+                                                                <a type="button" class="btn btn-success"
+                                                                   onclick="addCustomer('${item.key}', ${customer.id})"
+                                                                   id="btnAddCSKH" style="margin-bottom: 10px"
+                                                                ><i class="fa fas fa-pallet"></i> New</a>
+                                                            </div>
+                                                        </div>
+                                                    </c:if>
+                                                    <c:if test="${item.key == 'GDTT'}">
+                                                        <div class="row">
+                                                            <h4 class="card-title col-lg-6 "></h4>
+                                                            <div class="col-lg-6 d-flex justify-content-end text-white">
+                                                                <a type="button" class="btn btn-success" id="btnAddGDTT"
+                                                                style="margin-bottom: 10px"
+                                                                   onclick="addCustomer('${item.key}', ${customer.id})"><i
+                                                                        class="fa fas fa-pallet"></i>
+                                                                    New</a>
+                                                            </div>
+                                                        </div>
+                                                    </c:if>
+
+
+                                                    <div class="table-responsive">
+                                                        <table id="form-${item.key}" class="table">
+                                                            <thead class="bg-success text-white">
+                                                            <tr class="text-center">
+                                                                <th>Created Date</th>
+                                                                <th>Created By</th>
+                                                                <th>Transaction Details</th>
+                                                                <th>Action</th>
+
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody class="border border-success">
+                                                            <c:forEach var="list"
+                                                                       items="${item.key == 'CSKH' ? CSKH :GDTT}">
+                                                                <tr id="row_${list.id}" class="text-center">
+                                                                    <td><fmt:formatDate value="${list.createdDate}"
+                                                                                        pattern="yyyy-MM-dd HH:mm"/></td>
+                                                                    <td>${list.createdBy}</td>
+                                                                    <td>${list.note}</td>
+                                                                    <td class="text-center">
+                                                                        <div class="row d-flex justify-content-center">
+                                                                            <div class="col-lg-4 d-flex justify-content-center">
+                                                                                <a type="button"
+                                                                                   onclick="updateCustomer(${list.id},'${item.key}')"
+                                                                                   class="btn btn-success "
+                                                                                   data-toggle="tooltip"
+                                                                                   data-placement="top"
+                                                                                   title=""
+                                                                                   data-original-title="Sửa giao dịch!">
+                                                                                    <i class="fas fa-edit"> </i>
+                                                                                </a></div>
+                                                                            <div class="col-lg-4 d-flex justify-content-center">
+                                                                                <a type="button"
+                                                                                   onclick="deleteObject(${list.id},'${item.key}')"
+                                                                                   class="btn btn-dark "
+                                                                                   data-toggle="tooltip"
+                                                                                   data-placement="top"
+                                                                                   title=""
+                                                                                   data-original-title="Delete!">
+                                                                                    <i class="far fa-trash-alt "
+                                                                                       style="color: white;"></i>
+                                                                                </a>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </c:forEach>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </c:forEach>
+                    </div>
+                    <div class="col-lg-4">
                         <div class="card-header bg-dark">
-                            <h4 class="text-white">#${item.value}</h4>
+                            <h4 class="card-title text-white">Đã thuê</h4>
+                            <h6 class="card-subtitle text-white font-weight-light">Bảng danh sách các diện tích khách hàng đã thuê
+                                trong hệ
+                                thống
+                            </h6>
                         </div>
-                        <form id="form-cskh" method="GET">
-                            <!-- Dòng 1-->
-                            <div class="form-body">
-                                <div class="col-lg-12">
+                        <form:form modelAttribute="rentalCustomers" id="listFrom" action="" method="GET">
+                            <div class="row">
+                                <div class="col-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <c:if test="${item.key == 'CSKH'}">
-                                                <div class="row">
-                                                    <h4 class="card-title col-lg-6">Customer Care Table</h4>
-                                                    <div class="col-lg-6 d-flex justify-content-end">
-                                                        <a type="button" class="btn btn-success"
-                                                           onclick="addCustomer('${item.key}', ${customer.id})"
-                                                           id="btnAddCSKH"
-                                                        ><i class="fa fas fa-pallet"></i> New</a>
-                                                    </div>
-                                                </div>
-                                                <h6 class="card-subtitle">Tư vấn, hỗ trợ, giải đáp thắc mắc cho khách
-                                                    hàng qua các kênh online</h6>
-                                            </c:if>
-                                            <c:if test="${item.key == 'GDTT'}">
-                                                <div class="row">
-                                                    <h4 class="card-title col-lg-6">Direct Transaction</h4>
-                                                    <div class="col-lg-6 d-flex justify-content-end">
-                                                        <a type="button" class="btn btn-success" id="btnAddGDTT"
-                                                           onclick="addCustomer('${item.key}', ${customer.id})"><i
-                                                                class="fa fas fa-pallet"></i>
-                                                            New</a>
-                                                    </div>
-                                                </div>
-                                                <h6 class="card-subtitle">Gặp mặt trực tiếp khách hàng</h6>
-                                            </c:if>
-
-
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead class="bg-success text-white">
-                                                    <tr class="text-center">
-                                                        <th>Created Date</th>
-                                                        <th>Created By</th>
-                                                        <th>Transaction Details</th>
-                                                        <th>Action</th>
-
+                                            <div class="table-responsive" style="font-family:'Times New Roman'">
+                                                <table id="multi_control"
+                                                       class="v-middle table table-striped table-bordered display"
+                                                       style="width:100%">
+                                                    <thead class="bg-dark text-white" style="font-size: medium">
+                                                    <tr role="row">
+                                                        <th>Building</th>
+                                                        <th>Tầng</th>
+                                                        <th>Diện tích(m<sup>2</sup>)</th>
                                                     </tr>
                                                     </thead>
-                                                    <tbody class="border border-success">
-                                                    <c:forEach var="list" items="${item.key == 'CSKH' ? CSKH :GDTT}">
-                                                        <tr class="text-center">
-                                                            <td>${list.createdDate}</td>
-                                                            <td>${list.createdBy}</td>
-                                                            <td>${list.note}</td>
-                                                            <td class="text-center">
-                                                                <div class="row d-flex justify-content-center">
-                                                                    <div class="col-lg-4 d-flex justify-content-center">
-                                                                        <a type="button"
-                                                                           onclick="updateCustomer(${list.id},'${item.key}')"
-                                                                           class="btn btn-success "
-                                                                           data-toggle="tooltip" data-placement="top"
-                                                                           title=""
-                                                                           data-original-title="Sửa giao dịch!">
-                                                                            <i class="fas fa-edit"> </i>
-                                                                        </a></div>
-                                                                    <div class="col-lg-4 d-flex justify-content-center">
-                                                                        <a type="button"
-                                                                           onclick="deleteCustomer( )"
-                                                                           class="btn btn-dark "
-                                                                           data-toggle="tooltip" data-placement="top"
-                                                                           title=""
-                                                                           data-original-title="Delete!">
-                                                                            <i class="far fa-trash-alt "
-                                                                               style="color: white;"></i>
-                                                                        </a>
-                                                                    </div>
-
-                                                                </div>
-                                                            </td>
+                                                    <tbody style="font-size: smaller">
+                                                    <c:forEach var="item" items="${rentalCustomers}">
+                                                        <tr id="row_${item.id}">
+                                                            <td>${item.buildingName}</td>
+                                                            <td>Tầng ${item.floor}</td>
+                                                            <td>${item.value}</td>
                                                         </tr>
                                                     </c:forEach>
                                                     </tbody>
+                                                    <tfoot class="bg-dark text-white">
+                                                    <tr>
+                                                       <th>Building</th>
+                                                        <th>Tầng</th>
+                                                        <th>Diện tích(m<sup>2</sup>)</th>
+                                                    </tr>
+                                                    </tfoot>
+
                                                 </table>
+
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-
+                        </form:form>
                     </div>
-                </c:forEach>
-
+                </div>
             </div>
         </div>
     </div>
@@ -312,8 +375,8 @@
 </div>
 
 <script>
-    $('#btnCancel').click(function () {
-        window.location.href = '<c:url value ="/admin/admin/customer-list"/>'; //Quay về trang list
+    $('#btnCancel').click(function () {//Quay về trang danh sách
+        window.location.href = '<c:url value ="/admin/customer-list"/>'; //Quay về trang list
     });
 
     function addCustomer(code, customerId) {// Thêm mới khách hàng
@@ -323,7 +386,7 @@
 
     }
 
-    function updateCustomer(transactionId, code){
+    function updateCustomer(transactionId, code) {
         $('#editModal').modal();
         $('#code').val(code);
         $('#id').val(transactionId);
@@ -331,6 +394,50 @@
         loadTransaction(transactionId);
 
     }
+
+    function deleteObject(id, type) {
+
+        var transactionId = [id];
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    type: "success"
+                });
+                deleteTransaction(transactionId, type);
+            }
+        });
+    }
+
+    function deleteTransaction(transactionId, type) {//Xóa tòa nhà
+        $.ajax({
+            type: "DELETE",
+            url: "/api/transaction/" + transactionId,
+            data: JSON.stringify(transactionId),
+            contentType: "application/JSON",
+            //dataType: "JSON",
+            success: function (respond) {
+                console.log("Success!");
+                $("#row_" + transactionId).remove();
+                toastr.success('Xóa giao dịch thành công!', 'Success');
+            },
+            error: function (respond) {
+                console.log("Failed!");
+                console.log(respond);
+
+            }
+        });
+    }
+
     // load transaction
     function loadTransaction(transactionId) {
         $.ajax({
@@ -339,7 +446,7 @@
             contentType: "application/JSON",
             dataType: "JSON",
             success: function (response) {
-               $('#note').val(response.note);
+                $('#note').val(response.note);
             },
             error: function (response) {
                 console.log("Failed!");
@@ -361,6 +468,24 @@
 
     });
 
+    function editCustomer(data) {
+        //Call api
+        $.ajax({
+            type: "PUT",
+            url: "/api/customer",
+            data: JSON.stringify(data),
+            contentType: "application/JSON",
+            //dataType: "JSON",
+            success: function () {
+                window.location.href = '<c:url value="/admin/customer-list?message=success-edit"/>';
+            },
+            error: function () {
+                toastr.warning('Xảy ra lỗi khi thực hiện thao tác!', 'Cảnh báo');
+            }
+
+        });
+    }
+
     $('#btnSaveTransaction').click(function () {
         var data = {};
         var formData = $('#formTransactionEdit').serializeArray();
@@ -380,7 +505,7 @@
             contentType: "application/JSON",
             //dataType: "JSON",
             success: function () {
-                 $('#editModal').modal('hide');
+                $('#editModal').modal('hide');
                 toastr.success('Thao tác thành công!', 'Success');
 
             },
@@ -394,23 +519,7 @@
         }, 1200); //
     }
 
-    function editCustomer(data) {
-        //Call api
-        $.ajax({
-            type: "PUT",
-            url: "/api/customer",
-            data: JSON.stringify(data),
-            contentType: "application/JSON",
-            //dataType: "JSON",
-            success: function () {
-                window.location.href = '<c:url value="/admin/customer-list?message=success-edit"/>';
-            },
-            error: function () {
-                toastr.warning('Xảy ra lỗi khi thực hiện thao tác!', 'Cảnh báo');
-            }
 
-        });
-    }
 </script>
 </body>
 </html>

@@ -2770,7 +2770,7 @@ input[type="button"].btn-block {
   .dropdown-item.active, .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #2962FF; }
+    background-color: #59bf45; }
   .dropdown-item.disabled, .dropdown-item:disabled {
     color: #6c757d;
     background-color: transparent; }
@@ -3821,7 +3821,7 @@ input[type="button"].btn-block {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #7460ee;
+  color: #59bf45;
   background-color: #fff;
   border: 1px solid #dee2e6; }
   .page-link:hover {
@@ -3849,8 +3849,8 @@ input[type="button"].btn-block {
 .page-item.active .page-link {
   z-index: 1;
   color: #fff;
-  background-color: #2962FF;
-  border-color: #2962FF; }
+  background-color: #59bf45;
+  border-color: #57bd45; }
 
 .page-item.disabled .page-link {
   color: #6c757d;

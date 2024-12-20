@@ -9,10 +9,9 @@ import com.javaweb.model.request.BuildingSearchRequest;
 import com.javaweb.model.response.BuildingSearchResponse;
 import com.javaweb.model.response.ResponseDTO;
 import com.javaweb.model.response.StaffResponseDTO;
-//import com.javaweb.repository.AssignmentBuildingRepository;
 import com.javaweb.repository.BuildingRepository;
 import com.javaweb.repository.UserRepository;
-import com.javaweb.service.AssignmentBuildingService;
+import com.javaweb.repository.custom.BuildingRepositoryCustom;
 import com.javaweb.service.BuildingService;
 import com.javaweb.service.RentAreaService;
 import com.javaweb.utils.NumberUtils;
@@ -21,10 +20,13 @@ import com.javaweb.utils.UploadFileUtils;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -37,21 +39,16 @@ public class BuildingServiceImpl implements BuildingService {
 
     @Autowired
     private BuildingDTOConverter buildingDTOConverter;
-
-//    @Autowired
-//    private AssignmentBuildingRepository assignmentBuildingRepository;
     @Autowired
     private ModelMapper modelMapper;
-//
-//    @Autowired
-//    private AssignmentBuildingService assignmentBuildingService;
+
     @Autowired
     private RentAreaService rentAreaService;
+    @Autowired
+    private BuildingRepositoryCustom buildingRepositoryCustom;
 
     @Autowired
     private UploadFileUtils uploadFileUtils;
-//    @Autowired
-//    private AssignmentBuildingServiceImpl assignmentBuildingServiceImpl;
 
     @Override
     public List<BuildingSearchResponse> findAll(BuildingSearchRequest buildingSearchRequest) {
@@ -105,7 +102,7 @@ public class BuildingServiceImpl implements BuildingService {
         if(!StringUtils.check(buildingDTO.getDistrict())) return false;
         if(!StringUtils.check(buildingDTO.getWard())) return false;
         if(!StringUtils.check(buildingDTO.getStreet())) return false;
-        if(!StringUtils.check(buildingDTO.getRentArea())) return false;
+//        if(!StringUtils.check(buildingDTO.getRentArea())) return false;
        // if(!StringUtils.check(buildingDTO.getRentPriceDescription())) return false;
         if(!NumberUtils.isLong(String.valueOf(buildingDTO.getNumberOfBasement()))) return false;
         if(!NumberUtils.isLong(String.valueOf(buildingDTO.getFloorArea()))) return false;
@@ -134,6 +131,22 @@ public class BuildingServiceImpl implements BuildingService {
         buildingEntity.setUserEntities(staffs);
         buildingRepository.save(buildingEntity);
         return assignmentBuildingDTO;
+    }
+
+    @Override
+    public Long getTheNumberOfBuildings() {// lấy số lượng tòa nhà hiện có
+        return buildingRepository.count();
+    }
+
+    @Override
+    public List<BuildingSearchResponse> findTop5Building() {
+        List<BuildingEntity> buildingEntities = buildingRepositoryCustom.findTop5Buildings(); // xuống Repo để lấy danh sách entity cần tìm
+        List<BuildingSearchResponse> result = new ArrayList<>();
+        for (BuildingEntity item : buildingEntities ) {
+            BuildingSearchResponse building = buildingDTOConverter.toBuildingSearchResponse(item);
+            result.add(building);
+        }
+        return result;
     }
 
 

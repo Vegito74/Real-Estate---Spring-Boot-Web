@@ -5,7 +5,9 @@ import com.javaweb.model.dto.BuildingDTO;
 import com.javaweb.model.request.BuildingSearchRequest;
 import com.javaweb.model.response.BuildingSearchResponse;
 import com.javaweb.model.response.ResponseDTO;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
@@ -17,5 +19,6 @@ public interface BuildingService {
     void deleteBuilding(List<Long>  buildingId);
     BuildingDTO getBuildingById(Long buildingId);
     AssignmentBuildingDTO addAssignmentBuildingEntity(AssignmentBuildingDTO assignmentBuildingDTO);
-
+    Long getTheNumberOfBuildings();
+    List<BuildingSearchResponse> findTop5Building();
 }

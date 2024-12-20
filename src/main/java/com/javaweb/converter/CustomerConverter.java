@@ -3,6 +3,7 @@ package com.javaweb.converter;
 import com.javaweb.entity.CustomerEntity;
 import com.javaweb.entity.TransactionEntity;
 import com.javaweb.enums.TransactionStatus;
+import com.javaweb.enums.TransactionType;
 import com.javaweb.model.dto.CustomerDTO;
 import com.javaweb.repository.CustomerRepository;
 import com.javaweb.repository.TransactionRepository;
@@ -35,11 +36,12 @@ public class CustomerConverter {
 
     public CustomerEntity toCustomerEntity(CustomerDTO customerDTO){
         CustomerEntity customerEntity = modelMapper.map(customerDTO, CustomerEntity.class);
-        customerEntity.setTransactions(transactionRepository.findAllByCustomer(customerEntity));
+
         if(customerDTO.getId()!=null){
-             CustomerEntity customer = customerRepository.findById(customerDTO.getId()).get();
-             customerEntity.setCreatedDate(customer.getCreatedDate());
-             customerEntity.setCreatedBy(customer.getCreatedBy());
+            customerEntity.setTransactions(transactionRepository.findAllByCustomer(customerEntity));
+            CustomerEntity customer = customerRepository.findById(customerDTO.getId()).get();
+            customerEntity.setCreatedDate(customer.getCreatedDate());
+            customerEntity.setCreatedBy(customer.getCreatedBy());
         }
         return customerEntity;
     }

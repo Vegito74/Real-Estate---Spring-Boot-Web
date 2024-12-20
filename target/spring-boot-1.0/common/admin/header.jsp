@@ -31,7 +31,7 @@
                                 <img src="assets/images/logo-text.png" alt="homepage" class="dark-logo" />
 
                         <!-- Light Logo text -->
-                                <img src="assets/images/logo-light-text.png" class="light-logo" alt="homepage" />
+                                <img src="assets/images/winterhold1.png"  style="margin-left:-5px; margin-top: 7px" width="150" class="light-logo" alt="homepage" />
                             </span>
                 </a>
                 <a class="sidebartoggler d-none d-md-block" href="javascript:void(0)"
@@ -130,28 +130,29 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle waves-effect waves-dark pro-pic" href=""
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="assets/images/users/2.jpg" alt="user" class="rounded-circle" width="40">
+                        <img src="assets/images/users/fire-keeper.jpg" alt="user" class="rounded-circle" width="40">
                         <span class="m-l-5 font-medium d-none d-sm-inline-block"><%=SecurityUtils.getPrincipal().getFullName()%> <i
                                 class="mdi mdi-chevron-down"></i></span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right user-dd ">
+                    <div class="dropdown-menu text-center dropdown-menu-right user-dd ">
                                 <span class="with-arrow">
-                                    <span class="bg-primary"></span>
+                                    <span class="bg-success"></span>
                                 </span>
-                        <div class="d-flex no-block align-items-center p-15 bg-primary text-white m-b-10">
-                            <div class="">
-                                <img src="assets/images/users/2.jpg" alt="user" class="rounded-circle"
+                        <div class="d-flex no-block align-items-center text-center p-13 bg-success text-white">
+                            <div style="margin: 10px">
+                                <img src="assets/images/users/fire-keeper.jpg" alt="user"  class="rounded-circle"
                                      width="60">
                             </div>
-                            <div class="m-l-10">
-                                <h4 class="mb-0"><%=SecurityUtils.getPrincipal().getFullName()%> </h4>
-                                <p class=" mb-0">lvthongsoai74@gmail.com</p>
+
+                            <div style="margin-left: 10px">
+                                <p> </p>
+                                <h4 class="mb-0">  <%=SecurityUtils.getPrincipal().getFullName()%> </h4>
+                                <p class=" mb-0">  <%=SecurityUtils.getPrincipal().getAuthorities()%></p>
+                                <p> </p>
                             </div>
                         </div>
                         <a class="dropdown-item" href="/admin/profile-<%=SecurityUtils.getPrincipal().getUsername()%>">
                             <i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                        <a class="dropdown-item" href="javascript:void(0)">
-                            <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
 
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="<c:url value="/admin/profile-password"/>">
@@ -160,13 +161,8 @@
                         <a class="dropdown-item" href="<c:url value='/logout'/>">
                             <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                         <div class="dropdown-divider"></div>
-                        <div class="p-l-30 p-10">
-                            <div class="col-5">
-                                <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View
+                                <a href="" class="btn btn-sm btn-success btn-rounded" >View
                                     Profile</a>
-
-                            </div>
-                        </div>
                     </div>
                 </li>
                 <!-- ============================================================== -->

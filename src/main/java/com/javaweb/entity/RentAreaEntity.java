@@ -9,12 +9,34 @@ public class RentAreaEntity extends BaseEntity{
     @Column(name = "status")
     private String status;
 
+    @Column(name = "floor")
+    private String floor;
+
+    @Column(name = "customerid")
+    private Long customerId;
+
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getFloor() {
+        return floor;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     @ManyToOne

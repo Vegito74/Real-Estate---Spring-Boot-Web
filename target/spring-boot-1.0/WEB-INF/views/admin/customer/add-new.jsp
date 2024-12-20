@@ -51,7 +51,7 @@
                     <div class="card-header bg-dark">
                         <h4 class="m-b-0 text-white">#Customer Info</h4>
                     </div>
-                    <form:form id="form-add" method="GET">
+                    <form:form modelAttribute="customer" id="form-add" method="GET">
                         <!-- Dòng 1-->
                         <div class="form-body">
 
@@ -146,13 +146,10 @@
                                     <!--/span-->
                                     <div class="col-md-4">
                                         <div class="form-group has-danger">
-                                            <select id="status" name="status" class="form-control custom-select">
-                                                <option value="">--Chọn Trạng Thái--</option>
-                                                <c:forEach var="status" items="${transactionStatus}">
-                                                <option value="${status.key}">${status.value}</option>
-                                                </c:forEach>
-
-                                            </select>
+                                            <form:select path="status" id="status" name="status" class="form-control custom-select">
+                                                <form:option value="CHUA_XU_LY">--Chọn Trạng Thái--</form:option>
+                                                <form:options items="${transactionStatus}"/>
+                                            </form:select>
                                         </div>
                                     </div>
                                     <div class="col-md-3"></div>

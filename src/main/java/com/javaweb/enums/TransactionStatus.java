@@ -5,7 +5,7 @@ import java.util.Map;
 
 public enum TransactionStatus {
     CHUA_XU_LY ("Chưa xử lý!"),
-    DANG_XU_LY ("Đang xử lý"),
+    DANG_XU_LY ("Đang xử lý!"),
     DA_XU_LY ("Đã xử lý!"),;
 
     private final String statusName;

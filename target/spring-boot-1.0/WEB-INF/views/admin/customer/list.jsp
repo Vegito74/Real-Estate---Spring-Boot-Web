@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/common/taglib.jsp" %>
-<c:url var="customerListURL" value="/admin/admin/customer-list"/>
+<c:url var="customerListURL" value="/admin/customer-list"/>
 <c:url var="buildingAPI" value="/api/building"/>
 <html>
 <head>
@@ -50,7 +50,7 @@
                     <div class="card-header bg-dark">
                         <h4 class="m-b-0 text-white">Danh mục tìm kiếm</h4>
                     </div>
-                    <form:form modelAttribute="customer" id="listFrom" action="${customerDTOList}" method="GET">
+                    <form:form modelAttribute="customer" id="listFrom" action="${customerListURL}" method="GET">
 
                         <div class="form-body" style="font-size: small">
                             <div class="card-body">
@@ -85,8 +85,8 @@
                                     </div>
                                     <div class="col-md-3">
                                         <div class="form-group has-danger">
-                                            <label class="control-label">Diện tích đến</label>
-                                            <form:select path="managementStaff" class="form-control custom-select"
+                                            <label class="control-label">Nhân viên quản lý</label>
+                                            <form:select path="staffId" class="form-control custom-select"
                                                          data-placeholder="Choose a Category" tabindex="1">
                                                 <option value="">--Chọn Nhân Viên--</option>
                                                 <form:options items="${listStaff}"/>
@@ -98,7 +98,7 @@
 
                                 <div class="row d-flex justify-content-center">
 
-                                    <button id="btnSearchBuilding" type="button"
+                                    <button id="btnSearchBuilding" type="submit"
                                             class="btn btn-success ms-auto">
                                         <i class="fas fa-search"></i>
                                         Tìm kiếm
@@ -130,7 +130,7 @@
                                 <div class="table-responsive" style="font-family:'Times New Roman'">
                                     <table id="multi_control" class="table table-striped table-bordered display"
                                            style="width:100%">
-                                        <thead style="font-size: medium">
+                                        <thead class="bg-success text-white" style="font-size: medium">
                                         <tr role="row">
                                             <th>Customer Name</th>
                                             <th>Phone Number</th>
@@ -154,7 +154,19 @@
 
                                                 <td>${item.createdBy}</td>
                                                 <td>${item.createdDate}</td>
-                                                <td>${item.status}</td>
+                                                <td class="text-center">
+                                                    <c:choose>
+                                                        <c:when test="${item.status =='Chưa xử lý!'}">
+                                                            <span class="label label-danger label-rounded">Chưa xử lý!</span>
+                                                        </c:when>
+                                                        <c:when test="${item.status =='Đang xử lý!'}">
+                                                            <span class="label label-info label-rounded">Đang xử lý!</span>
+                                                        </c:when>
+                                                        <c:when test="${item.status =='Đã xử lý!'}">
+                                                            <span class="label label-success label-rounded">Đã xử lý!</span>
+                                                        </c:when>
+                                                    </c:choose>
+                                                </td>
 
                                                 <td class="">
                                                     <div class="row d-flex justify-content-center">
@@ -182,10 +194,7 @@
                                                                 <i class="far fa-trash-alt " style="color: white;"></i>
                                                             </a>
                                                         </div>
-
                                                     </div>
-
-
                                                 </td>
 
                                             </tr>
@@ -193,7 +202,7 @@
 
 
                                         </tbody>
-                                        <tfoot>
+                                        <tfoot class="bg-success text-white">
                                         <tr>
                                             <th>Customer Name</th>
                                             <th>Phone Number</th>
@@ -268,12 +277,12 @@
     }
     if (message === 'success-edit') {
         toastr.success("Update thông tin khách hàng thành công!", "Success");
-    }else if (message === 'error') {
+    } else if (message === 'error') {
         toastr.error('Có lỗi xảy ra, vui lòng thử lại.', "Error");
     }
-    urlParams.delete('message'); // Xóa tham số "message" khỏi URL
+    urlParams.delete('message', 'fullName', 'phone', 'email', 'staffId'); // Xóa tham số "message" khỏi URL
     // Cập nhật URL trên trình duyệt (không reload)
-    const newUrl = window.location.pathname + urlParams.toString();
+    const newUrl = window.location.pathname;
     window.history.replaceState({}, document.title, newUrl);
 
     // Hiển thị from nhân viên
@@ -364,14 +373,14 @@
                     text: "Your file has been deleted.",
                     type: "success"
                 });
-                deleteBuildings(customerId, row);
+                deleteCt(customerId, row);
             }
         });
 
 
     }
 
-    function deleteBuildings(customerId, row) {//Xóa tòa nhà
+    function deleteCt(customerId, row) {//Xóa tòa nhà
         $.ajax({
             type: "DELETE",
             url: "/api/customer/" + customerId,
@@ -379,7 +388,6 @@
             contentType: "application/JSON",
             //dataType: "JSON",
             success: function (respond) {
-                console.log("Success!");
                 $('#multi_control').DataTable().row(row).remove().draw();
                 toastr.success('Xóa khách hàng thành công!', 'Success');
             },

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -48,5 +49,17 @@ public class TransactionServiceImpl implements TransactionService {
     public TransactionDTO getTransaction(Long id) {
        TransactionEntity transactionEntity = transactionRepository.findById(id).get();
        return modelMapper.map(transactionEntity, TransactionDTO.class);
+    }
+
+    @Override
+    public void deleteTransaction(Long id) {
+        if (id != null){
+            transactionRepository.deleteById(id);
+        }
+    }
+
+    @Override
+    public Long countTransactions() {
+        return transactionRepository.count();
     }
 }

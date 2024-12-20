@@ -8,10 +8,7 @@
 	<meta name="author" content="">
 	<!-- Favicon icon -->
 	<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-	<title>Edit Building</title>
 	<!-- Custom CSS -->
-	<link href="assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
-	<link href="assets/extra-libs/c3/c3.min.css" rel="stylesheet">
 	<link href="assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
 	<!-- Custom CSS -->
 	<link href="assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
@@ -26,6 +23,8 @@
 	<!-- Custom CSS -->
 	<link href="dist/css/style.min.css" rel="stylesheet">
 	<link href="assets/libs/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="assets/libs/select2/dist/css/select2.min.css">
+	<title>WinterHold</title>
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -69,6 +68,10 @@
 <script src="assets/extra-libs/toastr/toastr-init.js"></script>
     <script src="assets/libs/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="assets/libs/sweetalert2/sweet-alert.init.js"></script>
+    <!-- This Page JS -->
+    <script src="assets/libs/select2/dist/js/select2.full.min.js"></script>
+    <script src="assets/libs/select2/dist/js/select2.min.js"></script>
+    <script src="dist/js/pages/forms/select2/select2.init.js"></script>
 	<!--This page plugins -->
 		<dec:body/>
 

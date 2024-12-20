@@ -68,7 +68,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-header bg-primary">
+                    <div class="card-header bg-dark v-middle">
                         <h4 class="m-b-0 text-white">Add New Building</h4>
                     </div>
                     <form:form modelAttribute="buildingEdit" id="form-edit" method="GET">
@@ -106,7 +106,7 @@
                                             <div class="form-group has-danger">
                                                 <form:select path="district"
                                                              class="form-control custom-select"
-                                                             tabindex="1">
+                                                             tabindex="1" >
                                                     <form:option value="">-- Chọn Quận --</form:option>
                                                     <form:options items="${districts}"/>
 
@@ -164,17 +164,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="col-md-1">
-                                            <div class="form-group text-right">
-                                                <label class="control-label"> Hạng (level):</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="form-group has-danger">
-                                                <form:input type="number" id="level" name="level"
-                                                            class="form-control form-control-danger" path="level"/>
-                                            </div>
-                                        </div>
+
                                     </div>
                                     <!--/row-->
                                     <div class="row">
@@ -197,7 +187,7 @@
                                     <div class="row">
                                         <div class="col-md-1">
                                             <div class="form-group">
-                                                <label class="control-label">Diện tích sàn:</label>
+                                            <label class="control-label">Diện tích sàn:</label>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
@@ -207,18 +197,28 @@
                                                             htmlEscape="false" required="true"/>
                                             </div>
                                         </div>
-                                        <div class="col-md-1 ">
+<%--                                        <div class="col-md-1 ">--%>
+<%--                                            <div class="form-group text-right">--%>
+<%--                                                <label class="control-label  "> Diện tích thuê:</label>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                        <div class="col-md-3">--%>
+<%--                                            <div class="form-group has-danger">--%>
+<%--                                                <form:input type="text" id="rentArea" name="rentArea"--%>
+<%--                                                            class="form-control form-control-danger" path="rentArea"/>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<div class="col-md-1">
                                             <div class="form-group text-right">
-                                                <label class="control-label  "> Diện tích thuê:</label>
+                                                <label class="control-label"> Số tầng:</label>
                                             </div>
                                         </div>
                                         <div class="col-md-3">
                                             <div class="form-group has-danger">
-                                                <form:input type="text" id="rentArea" name="rentArea"
-                                                            class="form-control form-control-danger" path="rentArea"/>
+                                                <form:input type="number" id="level" name="level"
+                                                            class="form-control form-control-danger" path="level"/>
                                             </div>
                                         </div>
-
                                         <div class="col-md-1">
                                             <div class="form-group text-right">
                                                 <label class="control-label"> Số tầng hầm:</label>
@@ -468,7 +468,7 @@
 
                                         </c:if>
 
-                                        <button id="btnCancel" type="button" class="  btn btn-info ms-auto"
+                                        <button id="btnCancel" type="button" class="  btn btn-dark ms-auto"
                                                 style="margin-left: 5px">
                                             <i class="mdi mdi-backspace"></i>
                                             Hủy thao tác

@@ -19,18 +19,7 @@
                     <li class="active"><a href="trang-chu">Trang chủ</a></li>
                     <li class="has-children">
                         <a href="properties">Properties</a>
-                        <ul class="dropdown">
-                            <li><a href="#">Buy Property</a></li>
-                            <li><a href="#">Sell Property</a></li>
-                            <li class="has-children">
-                                <a href="#">Dropdown</a>
-                                <ul class="dropdown">
-                                    <li><a href="#">Sub Menu One</a></li>
-                                    <li><a href="#">Sub Menu Two</a></li>
-                                    <li><a href="#">Sub Menu Three</a></li>
-                                </ul>
-                            </li>
-                        </ul>
+
                     </li>
                     <li><a href="services">Dịch vụ</a></li>
                     <li><a href="about">Giới thiệu</a></li>
@@ -47,7 +36,7 @@
                     </security:authorize>
                     <security:authorize access="isAuthenticated()">
                         <li class="has-children">
-                            <a class="nav-link" href="#"> Hello, <%=SecurityUtils.getPrincipal().getFullName()%>
+                            <a class="nav-link" href="#"> Hi, <%=SecurityUtils.getPrincipal().getFullName()%>
                             </a>
                             <ul class="dropdown">
                             <li><a href="/admin/home">Management Page</a></li>

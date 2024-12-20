@@ -4,14 +4,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum  districtCode {
-    QUAN_1 ("Quận 1"),
-    QUAN_2 ("Quận 2"),
-    QUAN_3 ("Quận 3"),
-    QUAN_4 ("Quận 4"),
-    QUAN_5 ("Quận 5"),
-    QUAN_6 ("Quận 6"),
-    QUAN_7 ("Quận 7"),
-    QUAN_8 ("Quận 8"),
+    QUAN_1 ("Quận Ba Đình"),
+    QUAN_2 ("Quận Cầu Giấy"),
+    QUAN_3 ("Quận Hai Bà Trưng"),
+    QUAN_4 ("Quận Bắc Từ Liêm"),
+    QUAN_5 ("Quận Nam Từ Liêm"),
+    QUAN_6 ("Quận Đống Đa"),
+    QUAN_7 ("Quận Hoàn Kiếm"),
+    QUAN_8 ("Quận Thanh Xuân"),
+    QUAN_9 ("Quận Hoàng Mai"),
+    QUAN_10 ("Quận Long Biên"),
+    QUAN_11 ("Quận Hà Đông"),
+    QUAN_12 ("Quận Tây Hồ"),
     ;
 
     private final String districtName;

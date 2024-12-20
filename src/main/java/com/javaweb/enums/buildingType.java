@@ -6,7 +6,7 @@ import java.util.*;
 public enum  buildingType {
     TANG_TRET ("Tầng Trệt "),
     NGUYEN_CAN ("Nguyên Căn "),
-    NOI_THAT ("Nội Thất ");
+    NOI_THAT ("Đầy Đủ Nội Thất ");
 
     private final String name;
 

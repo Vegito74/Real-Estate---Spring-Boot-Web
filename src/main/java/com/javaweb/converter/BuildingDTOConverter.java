@@ -6,6 +6,7 @@ import com.javaweb.entity.RentAreaEntity;
 import com.javaweb.enums.districtCode;
 import com.javaweb.model.dto.BuildingDTO;
 import com.javaweb.model.response.BuildingSearchResponse;
+import com.javaweb.repository.RentAreaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -21,26 +22,26 @@ public class BuildingDTOConverter {
             private ModelMapper modelMapper;
     @Autowired
     private RentAreaConverter rentAreaConverter;
+    @Autowired
+    private RentAreaRepository rentAreaRepository;
     // Chuyển đỏi dữ liệu bằng ModelMapper
 
     public BuildingSearchResponse toBuildingSearchResponse(BuildingEntity buildingEntity){
         // Chuyển đỏi dữ liệu bằng ModelMapper
         BuildingSearchResponse building = modelMapper.map(buildingEntity, BuildingSearchResponse.class);
         List<RentAreaEntity> rentAreaEntities = buildingEntity.getRentAreas();
-        String areaResult = rentAreaEntities.stream().map(it -> it.getValue().toString()).collect(Collectors.joining(",")); // Chuyển đổi từ dạng list => String
+        String areaResult = rentAreaEntities.stream().map(it -> it.getValue().toString()).collect(Collectors.joining(",")); // Chuyển đổi từ dạng list => String. lấy dữ liệu diện tích thuê
         building.setRentArea(areaResult);
 
         Map<String, String> districts = districtCode.type();//
-
         String districtName ="";
         if (buildingEntity.getDistrict() != null && buildingEntity.getDistrict() != "") {
             districtName = districts.get(buildingEntity.getDistrict());
         }
-
         if(districtName != "") {
             building.setAddress(buildingEntity.getStreet() + ", " + buildingEntity.getWard() + ", " +  districtName);
-
         }
+        building.setEmptyArea(rentAreaRepository.countAllByBuildingIdAndCustomerIdIsNull(building.getId()).toString());
 
         return building;
     }
@@ -62,7 +63,7 @@ public class BuildingDTOConverter {
     public BuildingEntity toBuildingEntity(BuildingDTO buildingDTO){
         BuildingEntity buildingEntity = modelMapper.map(buildingDTO, BuildingEntity.class);
         buildingEntity.setType(String.join("," , buildingDTO.getTypeCode()));
-        buildingEntity.setRentAreas(rentAreaConverter.toRentAreaEntityList(buildingDTO, buildingEntity));
+//      buildingEntity.setRentAreas(rentAreaConverter.toRentAreaEntityList(buildingDTO, buildingEntity)); // xử lý riêng diện tích thuê để phù hợp với thực tế
         return buildingEntity;
     }
 

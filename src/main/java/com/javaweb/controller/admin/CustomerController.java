@@ -4,9 +4,12 @@ import com.javaweb.enums.TransactionStatus;
 import com.javaweb.enums.TransactionType;
 import com.javaweb.model.dto.CustomerDTO;
 import com.javaweb.model.dto.TransactionDTO;
+import com.javaweb.model.request.CustomerSearchRequest;
 import com.javaweb.service.CustomerService;
+import com.javaweb.service.RentAreaService;
 import com.javaweb.service.TransactionService;
-import com.javaweb.service.impl.UserService;
+import com.javaweb.service.impl.RentAreaServiceImpl;
+import com.javaweb.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -22,21 +26,24 @@ import java.util.Map;
 public class CustomerController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @Autowired
     private CustomerService customerService;
 
     @Autowired
     private TransactionService transactionService;
-    @RequestMapping(value = "/admin/customer-list", method = RequestMethod.GET)
-    public ModelAndView listus(@ModelAttribute CustomerDTO customer) {
-        ModelAndView mav = new ModelAndView("admin/customer/list");
-        List<CustomerDTO> customerDTOList = customerService.findAllCustomers();
+    @Autowired
+    private RentAreaService rentAreaService;
 
-        mav.addObject("listStaff", userService.getStaffs()); // danh sách nhân viên
+    @RequestMapping(value = "/admin/customer-list", method = RequestMethod.GET)
+    public ModelAndView listus(@ModelAttribute CustomerSearchRequest customerSearchRequest, HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("admin/customer/list");
+        List<CustomerDTO> customerDTOList = customerService.findAllCustomers(customerSearchRequest);
+
+        mav.addObject("listStaff", userServiceImpl.getStaffs()); // danh sách nhân viên
         mav.addObject("customerDTOList", customerDTOList);
-        mav.addObject("customer", customer);
+        mav.addObject("customer", customerSearchRequest);
 
         return mav;
     }
@@ -44,6 +51,7 @@ public class CustomerController {
     @RequestMapping(value = "/admin/customer-new", method = RequestMethod.GET)
     public ModelAndView addCustomer(@ModelAttribute CustomerDTO customer) {
         ModelAndView mav = new ModelAndView("admin/customer/add-new");
+        mav.addObject("customer", customer);
         Map<String, String> transactionStatus = TransactionStatus.type(); // Khai báo type trong map
         mav.addObject("transactionStatus", transactionStatus);
         return mav;
@@ -67,6 +75,7 @@ public class CustomerController {
         mav.addObject("transactionType", TransactionType.type());
         mav.addObject("CSKH", transactionCSKH);
         mav.addObject("GDTT", transactionGDTT);
+        mav.addObject("rentalCustomers", rentAreaService.getRentalCustomers(id));
         return mav;
     }
 
